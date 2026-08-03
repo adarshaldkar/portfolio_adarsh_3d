@@ -446,6 +446,130 @@ const ProjectDetailsPage = () => {
             </div>
           </section>
         )}
+
+        {/* SPECIAL SMART INDUSTRY 5.0 DEEP ARCHITECTURE SECTION */}
+        {project.id === "smart-industry" && (
+          <section className="pt-12 border-t border-[#ffffff15] space-y-12">
+            <div className="text-center max-w-3xl mx-auto space-y-3">
+              <span className="text-xs font-bold text-[#915EFF] uppercase tracking-widest bg-[#915EFF15] px-4 py-1.5 rounded-full border border-[#915EFF40]">
+                UIP-2025 Top 24 National Project
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
+                Smart Industry 5.0 Digital Twin & Predictive Maintenance
+              </h2>
+              <p className="text-secondary text-sm sm:text-base">
+                Extracted from B.Tech ECE Final Project Report (May 2026, MVIT Puducherry)
+              </p>
+            </div>
+
+            {/* UN SDG Goal 9 Section */}
+            <div className="bg-[#1d1836] p-8 rounded-3xl border border-[#915EFF33] shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="space-y-4">
+                <div className="inline-block bg-[#00e67615] text-[#00e676] px-3.5 py-1 rounded-full text-xs font-bold border border-[#00e67640]">
+                  UN SDGs Alignment
+                </div>
+                <h3 className="text-xl font-bold text-white">SDG 9: Industry, Innovation & Infrastructure</h3>
+                <p className="text-secondary text-sm leading-relaxed">
+                  The system directly advances SDG Goal 9 by building resilient cyber-physical infrastructure, preventing catastrophic industrial downtime, and democratizing digital twin monitoring for food processing, automotive, and heavy machinery plants.
+                </p>
+              </div>
+              <div className="flex flex-col items-center justify-center bg-[#151030] p-6 rounded-2xl border border-[#ffffff0a]">
+                <img src={typeof project.gallery?.[10] === "object" ? project.gallery[10].src : project.image} alt="SDG 9 Goal" className="max-h-48 object-contain rounded-xl" />
+              </div>
+            </div>
+
+            {/* Hardware & Math Specs */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Sensors & Actuators Card */}
+              <div className="bg-[#1d1836] p-7 rounded-3xl border border-[#ffffff10] space-y-5">
+                <h3 className="text-lg font-bold text-[#915EFF] flex items-center gap-2">
+                  🔌 ESP8266 Sensor Array & Hardware Actuators
+                </h3>
+                <div className="space-y-3 text-xs">
+                  <div className="p-3.5 rounded-xl bg-[#151030] border border-[#ffffff0a]">
+                    <span className="font-bold text-white block">1. SW-420 Vibration Transducer</span>
+                    <span className="text-secondary">Monitors mechanical oscillation frequencies on motor bearing blocks to detect structural wear.</span>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-[#151030] border border-[#ffffff0a]">
+                    <span className="font-bold text-white block">2. MQ2 Electrochemical Gas Sensor</span>
+                    <span className="text-secondary">Detects LPG, Smoke, Carbon Monoxide, and flammable gas leaks in real time.</span>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-[#151030] border border-[#ffffff0a]">
+                    <span className="font-bold text-white block">3. Automated SG90 Servo Lubricator</span>
+                    <span className="text-secondary">Triggers 180° servo micro-valve to inject lubricant instantly upon detecting friction spikes.</span>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-[#151030] border border-[#ffffff0a]">
+                    <span className="font-bold text-white block">4. L298N Dual H-Bridge & PWM Speed Controller</span>
+                    <span className="text-secondary">Adjusts conveyor motor RPM or executes emergency zero-voltage trip when critical faults arise.</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mathematical Anomaly Formulations */}
+              <div className="bg-[#1d1836] p-7 rounded-3xl border border-[#ffffff10] space-y-5">
+                <h3 className="text-lg font-bold text-[#915EFF] flex items-center gap-2">
+                  📐 Predictive Maintenance Algorithms & Formulas
+                </h3>
+                <div className="space-y-3 text-xs">
+                  <div className="p-3.5 rounded-xl bg-[#151030] border border-[#ffffff0a]">
+                    <span className="font-bold text-white block">Isolation Forest Anomaly Score</span>
+                    <code className="text-[#915EFF] text-[11px] block my-1">s(x, ψ) = 2^(-E(h(x)) / c(n))</code>
+                    <span className="text-secondary">Evaluates multi-sensor feature space; score s &ge; 0.6 dispatches immediate maintenance alerts.</span>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-[#151030] border border-[#ffffff0a]">
+                    <span className="font-bold text-white block">Z-Score Vibration Normalization</span>
+                    <code className="text-[#915EFF] text-[11px] block my-1">V_norm = (V_raw - V_min) / (V_max - V_min)</code>
+                    <span className="text-secondary">Normalizes raw ADC vibration readings against baseline motor operating bounds.</span>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-[#151030] border border-[#ffffff0a]">
+                    <span className="font-bold text-white block">Conveyor Travel Time Monitoring</span>
+                    <code className="text-[#915EFF] text-[11px] block my-1">T_travel = t_exit - t_entry</code>
+                    <span className="text-secondary">Detects mechanical jams if travel time exceeds threshold (T_threshold).</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Communication Latency Table */}
+            <div className="bg-[#1d1836] p-8 rounded-3xl border border-[#ffffff10] shadow-xl space-y-6">
+              <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                ⚡ Real-Time Telemetry & Digital Twin Communication Benchmarks
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs text-secondary border-collapse">
+                  <thead>
+                    <tr className="border-b border-[#ffffff20] text-white font-semibold text-sm">
+                      <th className="py-3 px-4">Communication Protocol</th>
+                      <th className="py-3 px-4">Average Latency</th>
+                      <th className="py-3 px-4">Reliability Rate</th>
+                      <th className="py-3 px-4">Primary Use Case</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#ffffff0a]">
+                    <tr className="hover:bg-[#ffffff05]">
+                      <td className="py-3 px-4 text-white font-medium">WebSockets (<code className="text-[#915EFF]">ws://</code>)</td>
+                      <td className="py-3 px-4 text-emerald-400 font-bold">&lt; 35 ms</td>
+                      <td className="py-3 px-4">99.8%</td>
+                      <td className="py-3 px-4">Real-Time Three.js 3D Digital Twin Motion Sync & Gauges</td>
+                    </tr>
+                    <tr className="hover:bg-[#ffffff05]">
+                      <td className="py-3 px-4 text-white font-medium">Azure Digital Twin Sync</td>
+                      <td className="py-3 px-4 text-purple-400 font-semibold">&lt; 120 ms</td>
+                      <td className="py-3 px-4">99.5%</td>
+                      <td className="py-3 px-4">Cloud Graph Representation (DTDL JSON-LD Graph)</td>
+                    </tr>
+                    <tr className="hover:bg-[#ffffff05]">
+                      <td className="py-3 px-4 text-white font-medium">MQTT Fallback Telemetry</td>
+                      <td className="py-3 px-4 text-yellow-400 font-semibold">&lt; 65 ms</td>
+                      <td className="py-3 px-4">99.7%</td>
+                      <td className="py-3 px-4">Asynchronous Data Storage Pipeline</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        )}
       </main>
 
       {/* FULL-SCREEN LIGHTBOX MODAL */}

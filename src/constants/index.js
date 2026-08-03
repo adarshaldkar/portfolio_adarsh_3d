@@ -330,21 +330,35 @@ A key highlight is the AI Assistant powered by Gemini 1.5 Flash with custom prom
       { name: "ESP8266", color: "pink-text-gradient" },
       { name: "Azure Digital Twins", color: "blue-text-gradient" },
     ],
-    image: project_unisys,
-    gallery: [project_unisys],
+    image: smart_industry_main,
+    gallery: [
+      { src: smart_industry_main, title: "3D Digital Twin Visualization in Three.js (Factory Conveyor, Boiler & Arm)" },
+      { src: si_block, title: "System Architecture & Hardware Block Diagram (ESP8266, Sensors & Servo Actuators)" },
+      { src: si_flowchart, title: "Proposed Smart Industry 5.0 Decision & Control Flowchart" },
+      { src: si_hardware, title: "Physical Hardware Setup (ESP8266, Conveyor Belt, Sensors & Servo Lubricator)" },
+      { src: si_3d_alt, title: "3D Digital Twin Factory Model (Alternate Perspective View)" },
+      { src: si_dashboard, title: "Web Dashboard UI — Real-Time Industrial Telemetry & Status Cards" },
+      { src: si_dashboard_live, title: "Live Factory Monitoring Panel — Real-Time Sensor Graphs & State" },
+      { src: si_ws_latency, title: "WebSocket Full-Duplex Telemetry Latency Benchmark (<35ms Average)" },
+      { src: si_azure_latency, title: "Azure Digital Twins (DTDL JSON-LD Graph) Cloud Sync Latency" },
+      { src: si_fault_state, title: "3D Fault State Visualization — Red Highlight Alert on Conveyor Belt Fault" },
+      { src: si_sdg, title: "UN Sustainable Development Goal 9 (Industry, Innovation & Infrastructure)" },
+    ],
     source_code_link: "https://github.com/adarshaldkar",
     details: {
-      longDescription: `Smart Industry 4.0 is a real-time industrial digital twin system built for the Unisys Innovation Program 2025 (UIP-2025), where our team achieved national recognition, ranking 24th out of 8,000+ participating projects.
+      longDescription: `Smart Industry 5.0 (Digital Twin Based Predictive Maintenance System) is an integrated Cyber-Physical System (CPS) engineered for the Unisys Innovation Program 2025 (UIP-2025), where our team achieved national recognition, ranking 24th out of 8,000+ participating projects.
 
-The system combines physical hardware (ESP8266 microcontrollers, infrared sensors, vibration transducers, motor speed encoders) with a 3D digital twin interface built using Three.js and WebGL.
+The system combines physical hardware (ESP8266 NodeMCU microcontrollers, SW-420 vibration sensors, MQ2 gas/smoke detectors, IR product counters, LM35 temperature sensors, L298N motor drivers, and SG90 servo motor lubricant dispensers) with a 3D digital twin interface built using Three.js and WebGL.
 
-I engineered the real-time Python WebSocket pipeline handling 1-second heartbeat telemetry from physical sensors, built the interactive 3D factory visualization model (~7.9 MB GLTF) synchronized live with sensor state, and implemented an IsolationForest machine learning anomaly detection model to predict equipment failure before breakdown occurs.`,
+Sensor telemetry is streamed at sub-35ms latency over full-duplex WebSockets (ws://) to an Azure Digital Twin platform (DTDL JSON-LD graph) and a custom web dashboard. An Isolation Forest machine learning anomaly detection engine (scoring s >= 0.6) combined with Z-score normalized vibration analysis computes equipment Remaining Useful Life (RUL) and automatically triggers physical servo lubricant valves to prevent mechanical bearing seizure.`,
       highlights: [
-        "Ranked Top 24 out of 8,000+ Projects in Unisys Innovation Program 2025",
-        "Real-Time Interactive Three.js 3D Factory Model Synced with Hardware",
-        "IsolationForest Anomaly Detection Model with 5% Contamination Threshold",
-        "1-Second Heartbeat Telemetry over Asynchronous WebSockets",
-        "Certificate of Appreciation from Unisys Corporation",
+        "Unisys Innovation Program 2025 (UIP-2025) National Top 24 Finalist (Ranked #24 out of 8,000+ Teams)",
+        "Real-Time Interactive Three.js 3D Factory Model Synced with Hardware Telemetry",
+        "Sub-35ms Full-Duplex WebSockets (ws://) Telemetry Pipeline",
+        "Azure Digital Twins Integration using Digital Twin Definition Language (DTDL JSON-LD)",
+        "Isolation Forest Anomaly Detection Algorithm & Z-Score Vibration Thresholding",
+        "Automated Servo-Driven Lubrication Valve Actuation & Motor PWM Emergency Stops",
+        "UN Sustainable Development Goal 9 (Industry, Innovation & Infrastructure) Alignment",
       ],
     },
   },

@@ -62,6 +62,19 @@ import ns_grafana1 from "./noisesence_images/page_70_img_01.png";
 import ns_grafana2 from "./noisesence_images/page_71_img_01.png";
 import ns_sdg from "./noisesence_images/page_05_img_01.png";
 
+// Smart Industry 5.0 PDF extracted images
+import smart_industry_main from "./smart_industry_images/page_41_img_01.png";
+import si_flowchart from "./smart_industry_images/page_37_img_01.png";
+import si_block from "./smart_industry_images/page_38_img_01.png";
+import si_hardware from "./smart_industry_images/page_38_img_02.png";
+import si_3d_alt from "./smart_industry_images/page_41_img_02.png";
+import si_dashboard from "./smart_industry_images/page_42_img_01.png";
+import si_dashboard_live from "./smart_industry_images/page_49_img_01.png";
+import si_ws_latency from "./smart_industry_images/page_50_img_01.png";
+import si_azure_latency from "./smart_industry_images/page_51_img_01.png";
+import si_fault_state from "./smart_industry_images/page_54_img_01.png";
+import si_sdg from "./smart_industry_images/page_05_img_02.png";
+
 export {
   logo,
   live,
@@ -119,5 +132,16 @@ export {
   ns_grafana1,
   ns_grafana2,
   ns_sdg,
+  smart_industry_main,
+  si_flowchart,
+  si_block,
+  si_hardware,
+  si_3d_alt,
+  si_dashboard,
+  si_dashboard_live,
+  si_ws_latency,
+  si_azure_latency,
+  si_fault_state,
+  si_sdg,
 };
 
