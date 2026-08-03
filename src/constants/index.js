@@ -49,6 +49,17 @@ import {
   ns_grafana1,
   ns_grafana2,
   ns_sdg,
+  smart_industry_main,
+  si_flowchart,
+  si_block,
+  si_hardware,
+  si_3d_alt,
+  si_dashboard,
+  si_dashboard_live,
+  si_ws_latency,
+  si_azure_latency,
+  si_fault_state,
+  si_sdg,
 } from "../assets";
 
 export const navLinks = [
