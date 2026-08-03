@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { projects } from "../constants";
-import { github, live } from "../assets";
+import { github } from "../assets";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import StarsCanvas from "./canvas/Stars";
 
 const ProjectDetailsPage = () => {
   const { id } = useParams();
+  const [selectedImage, setSelectedImage] = useState(null);
   
   // Find project by ID or fallback to first project
   const project = projects.find((p) => p.id === id) || projects[0];
@@ -17,6 +18,8 @@ const ProjectDetailsPage = () => {
   }, [id]);
 
   if (!project) return null;
+
+  const galleryItems = project.gallery || [project.image];
 
   return (
     <div className="relative z-0 bg-[#050816] text-white min-h-screen flex flex-col">
@@ -48,8 +51,11 @@ const ProjectDetailsPage = () => {
           </ol>
         </nav>
 
-        {/* Page Title & Subtitle */}
-        <header className="mb-12">
+        {/* Page Header */}
+        <header className="mb-10">
+          <div className="inline-block bg-[#915EFF15] text-[#915EFF] text-xs font-bold px-3.5 py-1.5 rounded-full border border-[#915EFF35] mb-3">
+            {project.category}
+          </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-wide leading-tight">
             {project.name}
           </h1>
@@ -58,74 +64,36 @@ const ProjectDetailsPage = () => {
           </p>
         </header>
 
-        {/* 2-Column Grid: Left (Gallery Stack) & Right (Detailed Breakdown) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* LEFT COLUMN (7 cols): Vertical Image Gallery */}
-          <div className="lg:col-span-7 space-y-6">
-            <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-              📸 Project Screenshots & Architecture Diagrams
-            </h2>
-
-            {(project.gallery || [project.image]).map((item, index) => {
-              const imgSrc = typeof item === "string" ? item : item.src;
-              const imgTitle = typeof item === "object" ? item.title : null;
-
-              return (
-                <div
-                  key={index}
-                  className="w-full rounded-2xl overflow-hidden border border-[#ffffff15] bg-[#151030] shadow-[0_0_30px_rgba(145,94,255,0.15)] group hover:border-[#915EFF66] transition-all duration-300"
-                >
-                  <img
-                    src={imgSrc}
-                    alt={imgTitle || `${project.name} screenshot ${index + 1}`}
-                    className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                  />
-                  {imgTitle && (
-                    <div className="p-3.5 bg-[#100d25] border-t border-[#ffffff10] text-xs text-secondary font-medium">
-                      <span className="text-[#915EFF] font-semibold mr-1.5">Fig {index + 1}:</span>
-                      {imgTitle}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+        {/* TOP SECTION: Perfectly Balanced 2-Column Hero Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
+          {/* LEFT COLUMN (7 cols): Main Hero Cover Image */}
+          <div className="lg:col-span-7 space-y-4">
+            <div
+              onClick={() => setSelectedImage(typeof project.image === "string" ? project.image : project.image.src)}
+              className="w-full rounded-3xl overflow-hidden border border-[#ffffff15] bg-[#151030] shadow-[0_0_40px_rgba(145,94,255,0.2)] group cursor-pointer hover:border-[#915EFFaa] transition-all duration-300 relative"
+            >
+              <img
+                src={typeof project.image === "string" ? project.image : project.image.src}
+                alt={project.name}
+                className="w-full h-auto max-h-[480px] object-cover group-hover:scale-[1.02] transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050816dd] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <span className="text-xs font-bold text-white bg-[#915EFF] px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1.5">
+                  🔍 Click to View Full Screen
+                </span>
+              </div>
+            </div>
+            <div className="text-center text-xs text-secondary font-medium">
+              Primary System Dashboard & Cover Interface
+            </div>
           </div>
 
-          {/* RIGHT COLUMN (5 cols): Detailed Writeup & Info Card */}
-          <div className="lg:col-span-5 space-y-8">
-            {/* Detailed Writeup */}
-            <div className="bg-[#1d1836] p-7 rounded-3xl border border-[#ffffff10] shadow-xl space-y-6">
-              <h2 className="text-xl font-bold text-[#915EFF] border-b border-[#ffffff10] pb-3">
-                Detailed Explanation
-              </h2>
-
-              <div className="text-secondary text-[15px] leading-[28px] whitespace-pre-line space-y-4">
-                {project.details?.longDescription || project.description}
-              </div>
-
-              {/* Highlights */}
-              {project.details?.highlights && (
-                <div className="mt-6 pt-4 border-t border-[#ffffff10] space-y-3">
-                  <h3 className="text-white font-bold text-base flex items-center gap-2">
-                    ⚡ Key Technical Accomplishments
-                  </h3>
-                  <ul className="space-y-2.5">
-                    {project.details.highlights.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-sm text-secondary">
-                        <span className="text-[#915EFF] font-bold mt-0.5">✓</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            {/* Project Information Box */}
+          {/* RIGHT COLUMN (5 cols): Project Information & Tech Badges */}
+          <div className="lg:col-span-5 space-y-6">
             <div className="bg-[#151030] p-7 rounded-3xl border border-[#915EFF33] shadow-[0_0_30px_#915EFF15] space-y-5">
-              <h3 className="text-lg font-bold text-white border-b border-[#ffffff10] pb-3">
-                Project Information
-              </h3>
+              <h2 className="text-lg font-bold text-white border-b border-[#ffffff10] pb-3 flex items-center gap-2">
+                📌 Project Specifications
+              </h2>
 
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between items-center py-1 border-b border-[#ffffff0a]">
@@ -144,7 +112,7 @@ const ProjectDetailsPage = () => {
                 </div>
               </div>
 
-              {/* Tags */}
+              {/* Technologies */}
               <div className="pt-2">
                 <span className="text-xs text-secondary font-medium block mb-2">Technologies Used:</span>
                 <div className="flex flex-wrap gap-2">
@@ -184,9 +152,90 @@ const ProjectDetailsPage = () => {
           </div>
         </div>
 
+        {/* DETAILED EXPLANATION SECTION */}
+        <div className="bg-[#1d1836] p-8 sm:p-10 rounded-3xl border border-[#ffffff10] shadow-xl space-y-6 mb-16">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#915EFF] border-b border-[#ffffff10] pb-4 flex items-center gap-2">
+            📖 Detailed Architecture & Technical Writeup
+          </h2>
+
+          <div className="text-secondary text-base leading-[30px] whitespace-pre-line space-y-4">
+            {project.details?.longDescription || project.description}
+          </div>
+
+          {/* Highlights Checklist */}
+          {project.details?.highlights && (
+            <div className="mt-8 pt-6 border-t border-[#ffffff10] space-y-4">
+              <h3 className="text-white font-bold text-lg flex items-center gap-2">
+                ⚡ Key Technical Accomplishments
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {project.details.highlights.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#151030] border border-[#ffffff0a]">
+                    <span className="text-[#915EFF] font-bold mt-0.5 text-base">✓</span>
+                    <span className="text-sm text-secondary leading-snug">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* PERFECTLY ALIGNED GALLERY GRID: 2 Columns Full Width */}
+        <section className="space-y-8 mb-16">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#ffffff10] pb-4">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+                📸 Architecture Diagrams & System Screenshots
+              </h2>
+              <p className="text-xs sm:text-sm text-secondary mt-1">
+                Click any diagram or screenshot to expand in high-resolution view
+              </p>
+            </div>
+            <span className="text-xs text-[#915EFF] font-semibold bg-[#915EFF15] px-3.5 py-1.5 rounded-full border border-[#915EFF30]">
+              {galleryItems.length} Visual Assets Attached
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {galleryItems.map((item, index) => {
+              const imgSrc = typeof item === "string" ? item : item.src;
+              const imgTitle = typeof item === "object" ? item.title : null;
+
+              return (
+                <div
+                  key={index}
+                  onClick={() => setSelectedImage(imgSrc)}
+                  className="w-full rounded-2xl overflow-hidden border border-[#ffffff15] bg-[#151030] shadow-xl group hover:border-[#915EFFaa] transition-all duration-300 cursor-pointer flex flex-col justify-between"
+                >
+                  <div className="relative overflow-hidden bg-[#0d0920] flex items-center justify-center p-2 min-h-[220px]">
+                    <img
+                      src={imgSrc}
+                      alt={imgTitle || `${project.name} screenshot ${index + 1}`}
+                      className="w-full h-auto max-h-[340px] object-contain group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-[#05081699] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="text-xs font-bold text-white bg-[#915EFF] px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                        🔍 Click to Expand
+                      </span>
+                    </div>
+                  </div>
+                  {imgTitle && (
+                    <div className="p-4 bg-[#181335] border-t border-[#ffffff10] text-xs text-secondary font-medium">
+                      <span className="text-[#915EFF] font-bold mr-2 bg-[#915EFF20] px-2 py-0.5 rounded">
+                        Fig {index + 1}
+                      </span>
+                      {imgTitle}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
         {/* SPECIAL NOISESENSE DEEP ARCHITECTURE SECTION */}
         {project.id === "noisesense" && (
-          <section className="mt-16 pt-12 border-t border-[#ffffff15] space-y-12">
+          <section className="pt-12 border-t border-[#ffffff15] space-y-12">
             <div className="text-center max-w-3xl mx-auto space-y-3">
               <span className="text-xs font-bold text-[#915EFF] uppercase tracking-widest bg-[#915EFF15] px-4 py-1.5 rounded-full border border-[#915EFF40]">
                 Deep Engineering Specifications
@@ -200,7 +249,7 @@ const ProjectDetailsPage = () => {
             </div>
 
             {/* UN Sustainable Development Goals Section */}
-            <div className="bg-[#1d1836] p-8 rounded-3xl border border-[#915EFF33] shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-[#1d1836] p-8 rounded-3xl border border-[#915EFF33] shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="space-y-4">
                 <div className="inline-block bg-[#00e67615] text-[#00e676] px-3.5 py-1 rounded-full text-xs font-bold border border-[#00e67640]">
                   UN SDGs Mapping
@@ -222,7 +271,7 @@ const ProjectDetailsPage = () => {
               </div>
               <div className="flex flex-col items-center justify-center bg-[#151030] p-6 rounded-2xl border border-[#ffffff0a]">
                 <div className="text-center text-xs text-secondary mb-3 font-semibold">Official UN SDG Mapping Figures</div>
-                <img src={project.gallery?.[13]?.src || project.image} alt="SDG Mapping" className="max-h-64 object-contain rounded-xl" />
+                <img src={typeof project.gallery?.[13] === "object" ? project.gallery[13].src : project.image} alt="SDG Mapping" className="max-h-64 object-contain rounded-xl" />
               </div>
             </div>
 
@@ -237,21 +286,21 @@ const ProjectDetailsPage = () => {
                   Unlike conventional Sound Level Meters that only output a scalar dB reading, NoiseSense extracts 5 DSP acoustic parameters per audio sample:
                 </p>
                 <div className="space-y-3 text-xs">
-                  <div className="p-3 rounded-xl bg-[#151030] border border-[#ffffff0a]">
+                  <div className="p-3.5 rounded-xl bg-[#151030] border border-[#ffffff0a]">
                     <span className="font-bold text-white block">1. RMS Decibels (RMS dB)</span>
                     <code className="text-[#915EFF] text-[11px] block my-1">RMS_dB = 20 * log10(sqrt(mean(signal^2)))</code>
                     <span className="text-secondary">Quantifies sound energy intensity relative to full-scale digital reference.</span>
                   </div>
-                  <div className="p-3 rounded-xl bg-[#151030] border border-[#ffffff0a]">
+                  <div className="p-3.5 rounded-xl bg-[#151030] border border-[#ffffff0a]">
                     <span className="font-bold text-white block">2. Peak Amplitude</span>
                     <code className="text-[#915EFF] text-[11px] block my-1">Peak_Amp = max(abs(signal))</code>
                     <span className="text-secondary">Measures maximum instantaneous waveform peak for transient spike detection.</span>
                   </div>
-                  <div className="p-3 rounded-xl bg-[#151030] border border-[#ffffff0a]">
+                  <div className="p-3.5 rounded-xl bg-[#151030] border border-[#ffffff0a]">
                     <span className="font-bold text-white block">3. Zero Crossing Rate (ZCR)</span>
                     <span className="text-secondary">Differentiates periodic voiced sound (low ZCR) from noisy broadband sound (high ZCR).</span>
                   </div>
-                  <div className="p-3 rounded-xl bg-[#151030] border border-[#ffffff0a]">
+                  <div className="p-3.5 rounded-xl bg-[#151030] border border-[#ffffff0a]">
                     <span className="font-bold text-white block">4. Spectral Centroid (SC) & 5. Spectral Rolloff (SR)</span>
                     <span className="text-secondary">Computes the frequency center of mass (Hz) and 85% energy frequency limit using librosa STFT.</span>
                   </div>
@@ -398,6 +447,28 @@ const ProjectDetailsPage = () => {
           </section>
         )}
       </main>
+
+      {/* FULL-SCREEN LIGHTBOX MODAL */}
+      {selectedImage && (
+        <div
+          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+        >
+          <div className="relative max-w-6xl w-full max-h-[90vh] flex flex-col items-center">
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-10 right-0 text-white hover:text-[#915EFF] text-sm font-bold bg-[#ffffff15] hover:bg-[#ffffff30] px-4 py-1.5 rounded-full transition-colors"
+            >
+              ✕ Close
+            </button>
+            <img
+              src={selectedImage}
+              alt="Expanded view"
+              className="max-w-full max-h-[85vh] object-contain rounded-2xl border border-[#ffffff20] shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
