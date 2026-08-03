@@ -6,6 +6,13 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import StarsCanvas from "./canvas/Stars";
 
+const getImageSrc = (item, defaultFallback = "") => {
+  if (!item) return defaultFallback;
+  if (typeof item === "string") return item;
+  if (typeof item === "object" && item.src) return item.src;
+  return defaultFallback;
+};
+
 const ProjectDetailsPage = () => {
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(null);
@@ -20,6 +27,7 @@ const ProjectDetailsPage = () => {
   if (!project) return null;
 
   const galleryItems = project.gallery || [project.image];
+  const mainCoverSrc = getImageSrc(project.image);
 
   return (
     <div className="relative z-0 bg-[#050816] text-white min-h-screen flex flex-col">
@@ -69,11 +77,11 @@ const ProjectDetailsPage = () => {
           {/* LEFT COLUMN (7 cols): Main Hero Cover Image */}
           <div className="lg:col-span-7 space-y-4">
             <div
-              onClick={() => setSelectedImage(typeof project.image === "string" ? project.image : project.image.src)}
+              onClick={() => setSelectedImage(mainCoverSrc)}
               className="w-full rounded-3xl overflow-hidden border border-[#ffffff15] bg-[#151030] shadow-[0_0_40px_rgba(145,94,255,0.2)] group cursor-pointer hover:border-[#915EFFaa] transition-all duration-300 relative"
             >
               <img
-                src={typeof project.image === "string" ? project.image : project.image.src}
+                src={mainCoverSrc}
                 alt={project.name}
                 className="w-full h-auto max-h-[480px] object-cover group-hover:scale-[1.02] transition-transform duration-500"
               />
@@ -198,8 +206,8 @@ const ProjectDetailsPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {galleryItems.map((item, index) => {
-              const imgSrc = typeof item === "string" ? item : item.src;
-              const imgTitle = typeof item === "object" ? item.title : null;
+              const imgSrc = getImageSrc(item, mainCoverSrc);
+              const imgTitle = typeof item === "object" && item ? item.title : null;
 
               return (
                 <div
@@ -271,7 +279,7 @@ const ProjectDetailsPage = () => {
               </div>
               <div className="flex flex-col items-center justify-center bg-[#151030] p-6 rounded-2xl border border-[#ffffff0a]">
                 <div className="text-center text-xs text-secondary mb-3 font-semibold">Official UN SDG Mapping Figures</div>
-                <img src={typeof project.gallery?.[13] === "object" ? project.gallery[13].src : project.image} alt="SDG Mapping" className="max-h-64 object-contain rounded-xl" />
+                <img src={getImageSrc(project.gallery?.[13], mainCoverSrc)} alt="SDG Mapping" className="max-h-64 object-contain rounded-xl" />
               </div>
             </div>
 
@@ -474,7 +482,7 @@ const ProjectDetailsPage = () => {
                 </p>
               </div>
               <div className="flex flex-col items-center justify-center bg-[#151030] p-6 rounded-2xl border border-[#ffffff0a]">
-                <img src={typeof project.gallery?.[10] === "object" ? project.gallery[10].src : project.image} alt="SDG 9 Goal" className="max-h-48 object-contain rounded-xl" />
+                <img src={getImageSrc(project.gallery?.[10], mainCoverSrc)} alt="SDG 9 Goal" className="max-h-48 object-contain rounded-xl" />
               </div>
             </div>
 
