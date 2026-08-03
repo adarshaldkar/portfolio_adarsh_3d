@@ -1,0 +1,62 @@
+{
+  "name": "NoiseSense — Acoustic AI & Real-Time Noise Mapping",
+  "tagline": "Distributed IoT pipeline classifying 521 sound categories in real time",
+  "category": "AI & IoT Pipeline",
+  "status": "Completed",
+  "date": "2025–2026",
+  "purpose": "Real-time environmental noise monitoring, acoustic event classification, and GPS-tagged noise heatmap generation for smart city infrastructure.",
+  "problem_solved": "Cities and industrial zones lack real-time acoustic intelligence. Traditional noise monitoring uses manual spot-checks. NoiseSense creates a continuous, distributed, intelligent acoustic monitoring network.",
+  "architecture": {
+    "pipeline": [
+      "Audio Capture (Raspberry Pi / Microphone)",
+      "Digital Signal Processing (MFCC/Mel-Spectrogram feature extraction)",
+      "YAMNet ML Inference (521 sound category classification)",
+      "MQTT Broker (Mosquitto — async telemetry transport)",
+      "InfluxDB Time-Series Storage (GPS-tagged acoustic events)",
+      "Grafana Real-Time Dashboard (live heatmaps, trends)",
+      "Gemini AI PDF Report Generation (automated forensic reports)"
+    ],
+    "description": "Asynchronous pub-sub IoT pipeline. Edge devices capture audio, extract DSP features, run YAMNet inference locally, and publish classified events via MQTT to a central broker. InfluxDB stores time-series data with GPS coordinates. Grafana visualizes live heatmaps. Gemini AI generates automated forensic PDF reports on request.",
+    "key_design_choices": [
+      "Edge inference (YAMNet on device) to minimize bandwidth",
+      "MQTT pub-sub for sub-50ms event transport",
+      "InfluxDB for high-frequency time-series write performance",
+      "Offline-first design with 100% recovery on reconnect"
+    ]
+  },
+  "tech_stack": ["Python", "YAMNet (Google AudioSet)", "MQTT (Mosquitto)", "InfluxDB", "Docker", "Grafana", "Gemini AI API", "Raspberry Pi"],
+  "key_achievements": [
+    "85%+ ML classification accuracy across 521 AudioSet sound categories",
+    "Sub-50ms MQTT telemetry latency from capture to broker",
+    "GPS-tagged noise heatmaps with real-time Grafana visualization",
+    "Automated Gemini AI forensic PDF report generation",
+    "100% data recovery after network disconnection events",
+    "Fully containerized with Docker Compose for one-command deployment"
+  ],
+  "engineering_decisions": [
+    {
+      "decision": "Why MQTT instead of REST/HTTP?",
+      "reason": "MQTT's pub-sub model gives sub-50ms transport latency versus REST polling overhead. Also designed for IoT constrained devices — low power, low bandwidth. REST would require polling and is not event-driven."
+    },
+    {
+      "decision": "Why YAMNet over custom trained model?",
+      "reason": "YAMNet is pre-trained on 521 AudioSet classes by Google. Training a custom model from scratch would require massive labeled acoustic datasets. YAMNet provides state-of-the-art accuracy out-of-the-box with transfer learning capability."
+    },
+    {
+      "decision": "Why InfluxDB over PostgreSQL?",
+      "reason": "InfluxDB is purpose-built for time-series data. For IoT event streams with timestamps and GPS coordinates, InfluxDB outperforms PostgreSQL by 10x on write throughput and has native time-range query support."
+    },
+    {
+      "decision": "Why edge inference (on-device YAMNet)?",
+      "reason": "Sending raw audio over network is bandwidth-intensive and creates privacy concerns. Running inference on the edge device sends only structured event data (class, confidence, timestamp, GPS) — dramatically reducing bandwidth."
+    }
+  ],
+  "challenges": [
+    "Maintaining data integrity when MQTT broker goes offline — solved with offline buffer and guaranteed delivery on reconnect",
+    "Reducing YAMNet inference time on CPU-only edge hardware — optimized with audio chunk sizing and batch processing",
+    "GPS accuracy in indoor environments — handled with fallback to last known position"
+  ],
+  "github": "https://github.com/adarshaldkar/smart-noise-mapping-system",
+  "portfolio_link": "#projects",
+  "highlight": "Finalist — Unisys Innovation Program 2025 (UIP-2025), Top 24 / 8,000+"
+}

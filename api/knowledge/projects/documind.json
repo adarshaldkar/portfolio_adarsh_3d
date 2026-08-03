@@ -1,0 +1,58 @@
+{
+  "name": "DocuMind — Document Intelligence RAG System",
+  "tagline": "Upload any document and ask questions — production RAG pipeline with exact page citations",
+  "category": "AI / RAG System",
+  "status": "Completed",
+  "date": "2025",
+  "purpose": "A document intelligence system that lets users upload PDFs, Word documents, or text files and ask natural language questions. Returns answers with exact page citations from the source document.",
+  "problem_solved": "Reading and extracting information from large documents (legal contracts, research papers, technical manuals) is time-consuming. DocuMind enables instant question-answering with source citations.",
+  "architecture": {
+    "pipeline": [
+      "Document Upload (PDF/DOCX/TXT)",
+      "Text Extraction + Chunking (semantic paragraph chunking)",
+      "Embedding Generation (text-embedding model)",
+      "ChromaDB Vector Storage (persistent collection per document)",
+      "Query Processing (question → embedding)",
+      "Semantic Retrieval (top-k similar chunks)",
+      "Context Assembly + Page Citation tracking",
+      "LLM Response Generation (grounded answer with citations)",
+      "React Frontend (upload, chat, citation display)"
+    ],
+    "description": "Classic RAG pipeline with ChromaDB as vector store. Documents are chunked at paragraph level, embedded, and stored with page metadata. Queries retrieve top-k semantically similar chunks, which are passed to the LLM as grounded context. Response includes exact page citations from source document.",
+    "key_design_choices": [
+      "Semantic chunking (paragraph-level) over fixed-size chunking for better context preservation",
+      "ChromaDB for persistent, queryable vector collections",
+      "Citation tracking in chunk metadata for page-level attribution",
+      "Grounded responses — LLM cannot answer outside retrieved context"
+    ]
+  },
+  "tech_stack": ["Python", "FastAPI", "LangChain", "ChromaDB", "OpenAI Embeddings", "React", "TypeScript", "Docker"],
+  "key_achievements": [
+    "Semantic chunking with paragraph-level context preservation",
+    "Exact page citation tracking in every response",
+    "Support for PDF, DOCX, and TXT document formats",
+    "Persistent ChromaDB collections (documents survive server restart)",
+    "Grounded responses — LLM cannot hallucinate outside source document"
+  ],
+  "engineering_decisions": [
+    {
+      "decision": "Why semantic chunking over fixed-size chunking?",
+      "reason": "Fixed-size chunking (e.g., 512 tokens) splits mid-sentence, losing context. Semantic chunking splits at paragraph/section boundaries, preserving logical units of information. This significantly improves retrieval relevance."
+    },
+    {
+      "decision": "Why ChromaDB over pgvector?",
+      "reason": "ChromaDB provides a document-oriented vector store with built-in collection management — perfect for per-document collections. pgvector requires PostgreSQL setup and manual schema design. ChromaDB is faster to set up for a document QA use case."
+    },
+    {
+      "decision": "Why page citations?",
+      "reason": "Users need to verify AI answers against source documents, especially for legal or research use cases. Page citations enable trust and verification. Every chunk stored in ChromaDB includes page_number metadata for citation retrieval."
+    }
+  ],
+  "challenges": [
+    "Scanned PDF extraction quality — handled with OCR fallback using Tesseract",
+    "Large document chunking strategy — solved with recursive text splitter with overlap",
+    "Multi-document query disambiguation — solved with collection-per-document isolation"
+  ],
+  "github": "https://github.com/adarshaldkar/documind",
+  "portfolio_link": "#projects"
+}

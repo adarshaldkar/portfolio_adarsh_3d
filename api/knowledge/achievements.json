@@ -1,0 +1,38 @@
+{
+  "hackathons": [
+    {
+      "name": "Odoo Hackathon 2025",
+      "rank": "Top 78 out of 19,000+",
+      "project": "TurfSpot — Sports Venue Booking Platform",
+      "description": "National-level hackathon. Built a full-stack sports venue booking platform using Odoo ERP with custom modules, real-time availability, and payment integration. Competed against 19,000+ participants.",
+      "year": "2025",
+      "significance": "Top 0.4% nationally"
+    },
+    {
+      "name": "Unisys Innovation Program 2025 (UIP-2025)",
+      "rank": "Top 24 out of 8,000+",
+      "project": "Smart Industry 4.0 — Digital Twin & Predictive Maintenance",
+      "description": "National-level innovation challenge. Built a Digital Twin system with real-time IoT sensor data, predictive maintenance using ML, and a Grafana monitoring dashboard. Competed against 8,000+ participants.",
+      "year": "2025",
+      "significance": "Top 0.3% nationally"
+    }
+  ],
+  "dsa": {
+    "platform": "LeetCode",
+    "problems_solved": "400+",
+    "topics": ["Arrays", "Strings", "Linked Lists", "Trees", "Graphs", "Dynamic Programming", "Sliding Window", "Two Pointers", "Binary Search", "Heaps"],
+    "focus": "Strong DSA foundation with consistent daily practice"
+  },
+  "certifications": [
+    "Python for Data Science — IBM / Coursera",
+    "Machine Learning Specialization — Andrew Ng / DeepLearning.AI",
+    "Full Stack Web Development — Relevant certification",
+    "Docker & Containerization"
+  ],
+  "academic": {
+    "institute": "MVIT (Mahatma Vivekanand Institute of Technology)",
+    "degree": "B.Tech in Computer Science & Engineering",
+    "cgpa": "8.2+",
+    "expected_graduation": "2026"
+  }
+}

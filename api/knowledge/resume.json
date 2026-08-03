@@ -1,0 +1,26 @@
+{
+  "name": "Adarsh Patel",
+  "education": {
+    "degree": "B.Tech in Computer Science & Engineering",
+    "institute": "Mahatma Vivekanand Institute of Technology (MVIT)",
+    "cgpa": "8.2+",
+    "duration": "2022 – 2026",
+    "relevant_courses": ["Data Structures & Algorithms", "Machine Learning", "Database Systems", "Operating Systems", "Computer Networks", "Software Engineering", "Cloud Computing"]
+  },
+  "skills": {
+    "ai_ml": ["Python", "LangChain (studied, not used in custom projects)", "RAG Pipelines", "Vector Databases", "ChromaDB", "Hybrid Search", "YAMNet", "TensorFlow", "Scikit-learn", "NLP", "Prompt Engineering", "OpenRouter", "Gemini AI API"],
+    "backend": ["FastAPI", "Node.js", "Express.js", "REST APIs", "PostgreSQL", "MongoDB", "InfluxDB", "JWT Authentication", "WebSockets", "MQTT Protocol"],
+    "frontend": ["React.js", "Next.js", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Three.js", "Framer Motion"],
+    "devops_infra": ["Docker", "Docker Compose", "Grafana", "Railway", "Vercel", "Render", "Git", "GitHub Actions", "Linux"],
+    "databases": ["PostgreSQL", "MongoDB", "ChromaDB", "InfluxDB", "pgvector"],
+    "languages": ["Python (primary)", "JavaScript", "TypeScript", "SQL", "Bash"]
+  },
+  "strengths": [
+    "AI systems architecture — designing production-grade pipelines from scratch",
+    "Full-stack engineering — owns front-to-back product development",
+    "Systems thinking — optimizes for latency, reliability, and maintainability",
+    "No-LangChain custom runtimes — builds reusable AI infrastructure",
+    "Rapid prototyping — ships working products quickly"
+  ],
+  "summary": "Adarsh is an AI Systems Engineer and Full Stack Developer who builds production-grade AI pipelines and web applications. He specializes in custom AI runtime architecture, RAG systems, IoT pipelines, and full-stack product engineering. Known for shipping working systems rather than prototypes."
+}

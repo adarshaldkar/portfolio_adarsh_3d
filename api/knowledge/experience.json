@@ -1,0 +1,62 @@
+{
+  "work_experience": [
+    {
+      "company": "Planarc",
+      "role": "Full Stack Engineer Intern",
+      "duration": "Jul 2025 – Nov 2025",
+      "type": "Internship",
+      "description": "Full stack engineering internship. Built and shipped production features using React, Node.js, and PostgreSQL. Worked on real product features used by live customers.",
+      "tech_stack": ["React", "Node.js", "PostgreSQL", "REST APIs", "Git"],
+      "key_contributions": [
+        "Built production-grade UI components in React",
+        "Developed RESTful APIs with Node.js",
+        "Worked with PostgreSQL for data modeling and queries",
+        "Collaborated in agile team environment with daily standups"
+      ],
+      "impact": "Shipped features used by live customers"
+    },
+    {
+      "company": "LVMS Client",
+      "role": "Freelance Full Stack Developer",
+      "duration": "2026 – Ongoing",
+      "type": "Freelance / Contract",
+      "description": "Confidential fintech client. Built LVMS — a Loan & Vehicle Management System for a financial services business. Full custom system built from scratch. Client identity kept confidential.",
+      "tech_stack": ["React", "Node.js", "PostgreSQL", "JWT Auth", "REST APIs"],
+      "key_contributions": [
+        "Designed and built complete Loan Management module",
+        "Built Vehicle Asset tracking system",
+        "Implemented secure JWT authentication",
+        "Delivered full-stack production system from scratch"
+      ],
+      "impact": "Live production system handling real financial transactions",
+      "note": "Client identity confidential — project referenced as LVMS"
+    },
+    {
+      "company": "Bluestock Fintech",
+      "role": "Software Engineering Intern",
+      "duration": "Feb 2025 – Mar 2025",
+      "type": "Internship",
+      "description": "Software engineering internship at a fintech startup.",
+      "tech_stack": ["Python", "React", "REST APIs"],
+      "key_contributions": [
+        "Contributed to backend API development",
+        "Worked on fintech product features"
+      ]
+    },
+    {
+      "company": "Unified Mentorship",
+      "role": "Intern",
+      "duration": "Oct 2024 – Dec 2024",
+      "type": "Internship",
+      "description": "Early internship experience in software development.",
+      "tech_stack": ["Python", "Web Development"],
+      "key_contributions": [
+        "Gained practical software development experience",
+        "Worked on real projects under mentorship"
+      ]
+    }
+  ],
+  "freelance_summary": "Beyond internships, Adarsh has independently built and deployed production systems for real clients — demonstrating the ability to own projects end-to-end without supervision.",
+  "total_internships": 3,
+  "freelance_projects": 1
+}

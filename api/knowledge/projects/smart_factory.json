@@ -1,0 +1,61 @@
+{
+  "name": "Smart Industry 4.0 — Digital Twin & Predictive Maintenance",
+  "tagline": "IoT Digital Twin with real-time ML anomaly detection and Grafana monitoring — Unisys UIP-2025 Top 24/8,000+",
+  "category": "Industry 4.0 / IoT / ML",
+  "status": "Completed",
+  "date": "2025",
+  "purpose": "A Digital Twin system for industrial machinery that simulates real-world equipment behavior using IoT sensor data, predicts failures using ML, and provides real-time Grafana monitoring dashboards.",
+  "problem_solved": "Industrial equipment failures cause costly downtime. Predictive maintenance using Digital Twins can predict failures before they happen, reducing unplanned downtime by up to 30-40%.",
+  "hackathon": {
+    "name": "Unisys Innovation Program 2025 (UIP-2025)",
+    "rank": "Top 24 out of 8,000+",
+    "significance": "Top 0.3% nationally — national-level innovation challenge"
+  },
+  "architecture": {
+    "pipeline": [
+      "IoT Sensors (temperature, vibration, pressure simulation)",
+      "MQTT Data Ingestion",
+      "Digital Twin Engine (real-time state synchronization)",
+      "ML Anomaly Detection (Isolation Forest + LSTM)",
+      "InfluxDB Time-Series Storage",
+      "Grafana Real-Time Dashboard",
+      "Alert System (threshold breach notifications)"
+    ],
+    "description": "IoT sensor data feeds into a Digital Twin model that mirrors the physical machine's state. ML models run continuous anomaly detection. Anomalies trigger alerts. Grafana provides live visualization of machine health metrics.",
+    "key_design_choices": [
+      "Digital Twin architecture for real-time state mirroring",
+      "Hybrid ML (Isolation Forest for point anomalies + LSTM for temporal patterns)",
+      "MQTT for low-latency sensor data ingestion",
+      "InfluxDB for time-series storage optimized for IoT workloads"
+    ]
+  },
+  "tech_stack": ["Python", "MQTT", "InfluxDB", "Docker", "Grafana", "Scikit-learn", "TensorFlow/Keras", "FastAPI", "React"],
+  "key_achievements": [
+    "Top 24 / 8,000+ in Unisys Innovation Program 2025 (UIP-2025)",
+    "Real-time Digital Twin with sub-100ms state synchronization",
+    "ML anomaly detection with 91%+ accuracy on test dataset",
+    "Grafana dashboard with 15+ custom industrial metrics panels",
+    "Predictive maintenance alerts with 85%+ precision"
+  ],
+  "engineering_decisions": [
+    {
+      "decision": "Why a Digital Twin approach?",
+      "reason": "A Digital Twin creates a virtual replica that evolves in sync with physical equipment. This enables running 'what-if' simulations, detecting drift from expected behavior, and predicting failures without instrumenting every physical test scenario."
+    },
+    {
+      "decision": "Why Hybrid ML (Isolation Forest + LSTM)?",
+      "reason": "Isolation Forest detects point anomalies (single readings that are statistically unusual). LSTM captures temporal anomalies (gradual degradation patterns over time). Neither alone is sufficient — the hybrid catches both failure patterns."
+    },
+    {
+      "decision": "Why InfluxDB for sensor data?",
+      "reason": "Industrial IoT generates thousands of sensor readings per second. InfluxDB is purpose-built for high-frequency time-series writes — it outperforms PostgreSQL by 10x in this workload while supporting native time-range queries for dashboards."
+    }
+  ],
+  "challenges": [
+    "Simulating realistic IoT sensor noise and drift — solved with statistical noise injection models",
+    "LSTM training on limited labeled failure data — solved with synthetic anomaly generation",
+    "Dashboard performance with high-frequency data streams — solved with Grafana data source downsampling"
+  ],
+  "github": "https://github.com/adarshaldkar/smart-industry-4",
+  "portfolio_link": "#projects"
+}

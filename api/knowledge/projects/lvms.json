@@ -1,0 +1,55 @@
+{
+  "name": "LVMS — Loan & Vehicle Management System",
+  "tagline": "Production fintech SaaS — complete loan lifecycle and vehicle asset management",
+  "category": "Full Stack Fintech / SaaS",
+  "status": "Live in Production",
+  "date": "2026 – Ongoing",
+  "confidential": true,
+  "purpose": "A complete Loan & Vehicle Management System built for a confidential fintech client. Handles the full loan lifecycle — application, approval, disbursement, repayment tracking — plus vehicle asset management.",
+  "problem_solved": "The client managed loans and vehicle assets manually using spreadsheets, leading to errors, delays, and zero visibility into portfolio performance. LVMS digitized the entire operation.",
+  "note": "This is a live production system for a real fintech business. The client's identity is kept confidential by request. LVMS is referenced by system name only.",
+  "architecture": {
+    "pipeline": [
+      "React Frontend (Loan Dashboard, Vehicle Registry, Reports)",
+      "Node.js + Express REST API",
+      "PostgreSQL (Loans, Borrowers, Vehicles, Transactions)",
+      "JWT Authentication + Role-Based Access Control",
+      "Automated EMI Calculation Engine",
+      "Report Generation (PDF exports)"
+    ],
+    "description": "Full-stack fintech application with React frontend, Node.js REST API backend, PostgreSQL relational database, and JWT-secured role-based access control. Handles complete loan lifecycle and vehicle fleet management.",
+    "key_design_choices": [
+      "PostgreSQL for ACID-compliant financial transaction integrity",
+      "JWT + RBAC for secure multi-role access (admin, manager, agent)",
+      "Automated EMI calculation engine for loan repayment schedules",
+      "Audit trail for all financial transactions"
+    ]
+  },
+  "tech_stack": ["React", "Node.js", "Express", "PostgreSQL", "JWT", "REST APIs", "Docker"],
+  "key_achievements": [
+    "Live production system handling real financial transactions",
+    "Complete loan lifecycle management (application to closure)",
+    "Vehicle fleet registry with asset tracking",
+    "Role-based access control (Admin, Manager, Field Agent)",
+    "Automated EMI calculation and repayment scheduling",
+    "Full audit trail for compliance"
+  ],
+  "engineering_decisions": [
+    {
+      "decision": "Why PostgreSQL over MongoDB?",
+      "reason": "Financial data requires ACID compliance. Loan records, transactions, and repayment schedules need relational integrity — foreign keys, constraints, and transactions. MongoDB's document model is not suitable for this use case."
+    },
+    {
+      "decision": "Why JWT + RBAC?",
+      "reason": "A fintech application has multiple user roles (admin, manager, field agent) with different permission levels. RBAC ensures agents can only see their own loans, managers see their team, and admins have full visibility. JWT provides stateless, scalable authentication."
+    }
+  ],
+  "challenges": [
+    "Financial calculation precision — solved with integer arithmetic (paise not rupees) to avoid floating-point errors",
+    "Multi-role permission complexity — solved with a granular RBAC middleware layer",
+    "Audit trail performance at scale — solved with async audit log writes to separate table"
+  ],
+  "github": null,
+  "github_note": "GitHub repository not public — live production system for a confidential client",
+  "portfolio_link": "#projects"
+}

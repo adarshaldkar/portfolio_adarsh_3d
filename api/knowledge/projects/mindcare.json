@@ -1,0 +1,75 @@
+{
+  "name": "MindCare AI — Agentic Mental Health Platform",
+  "tagline": "Flagship AI project — Custom Adaptive Runtime with Planner, Hybrid RAG, Memory, MCP, and Evaluation",
+  "category": "Agentic AI System",
+  "status": "Completed",
+  "date": "2025–2026",
+  "purpose": "A production-grade agentic AI platform for mental health support — featuring a custom AI runtime engine built without LangChain, with planner-driven capability routing, hybrid RAG, conversation memory, and an evaluation framework.",
+  "problem_solved": "Most mental health chatbots are shallow, generic, and unreliable. MindCare AI provides structured, empathetic, context-aware support powered by a production-grade AI runtime with measurable quality controls.",
+  "why_flagship": "MindCare AI is Adarsh's most architecturally sophisticated project. It demonstrates deep AI systems engineering — not just API integration. It was built entirely without LangChain, using a custom runtime that mirrors enterprise AI system design patterns.",
+  "architecture": {
+    "pipeline": [
+      "User Message",
+      "Intent Planner (classifies query type)",
+      "Execution Plan (ordered capability list)",
+      "Capability Executor (routes to correct module)",
+      "Hybrid RAG Retriever (keyword + semantic search)",
+      "Context Builder (merges retrieved docs + memory)",
+      "Prompt Builder (assembles final LLM prompt)",
+      "LLM Router (selects optimal model)",
+      "Streaming Response",
+      "Evaluator (quality scoring)"
+    ],
+    "components": {
+      "adaptive_runtime": "Custom-built AI runtime engine — the core of MindCare AI. Manages the full pipeline from intent detection to streaming response without LangChain dependency.",
+      "planner": "Intent classifier that categorizes user queries into capability types — crisis detection, mood tracking, therapy, journaling, resources, general support.",
+      "capability_layer": "Modular capability system — each mental health function (crisis support, CBT exercises, mood journal, breathing techniques) is a separate capability module.",
+      "hybrid_rag": "Combined keyword (BM25) + semantic (ChromaDB vector) retrieval. Hybrid approach outperforms pure semantic search by 23% on precision for mental health knowledge retrieval.",
+      "memory": "Multi-layer memory — session buffer (short-term) + persistent user history (long-term). Enables contextual follow-up across sessions.",
+      "mcp": "Model Context Protocol implementation — standardized interface for capability communication. Enables capability hot-swapping without system restart.",
+      "evaluator": "Response quality evaluation framework — scores responses on accuracy, empathy, safety, and relevance. Filters low-quality responses before delivery.",
+      "llm_router": "Multi-provider LLM router — selects optimal model (Gemini, OpenRouter, Groq) based on query complexity and latency requirements."
+    },
+    "key_design_choices": [
+      "No LangChain — full custom runtime for maximum control and performance",
+      "Hybrid RAG over pure semantic search for higher precision",
+      "MCP protocol for standardized capability interfaces",
+      "Evaluator as quality gate before every response delivery"
+    ]
+  },
+  "tech_stack": ["Python", "FastAPI", "ChromaDB", "pgvector", "PostgreSQL", "React", "TypeScript", "Docker", "OpenRouter", "Gemini AI"],
+  "key_achievements": [
+    "Full custom AI runtime built without LangChain",
+    "Hybrid RAG (keyword + semantic) with 23% precision improvement over pure semantic",
+    "MCP (Model Context Protocol) implementation for capability standardization",
+    "Multi-layer memory system (session + persistent)",
+    "Response quality evaluator with safety filtering",
+    "Multi-provider LLM router (Gemini, OpenRouter, Groq)"
+  ],
+  "engineering_decisions": [
+    {
+      "decision": "Why not LangChain?",
+      "reason": "LangChain is a black box. Building a custom runtime gives full control over latency, error handling, capability routing, and memory management. The custom runtime is also reusable — Adarsh reused the same planner-capability pattern in his portfolio AI assistant."
+    },
+    {
+      "decision": "Why Hybrid RAG over pure semantic?",
+      "reason": "Pure semantic search misses exact keyword matches (medication names, specific techniques). BM25 keyword search is fast and precise for exact terms. Hybrid combines both: semantic for conceptual similarity + keyword for exact matches. Result: 23% higher precision."
+    },
+    {
+      "decision": "Why MCP protocol?",
+      "reason": "Model Context Protocol standardizes how capabilities communicate with the runtime. This enables capability hot-swapping, testing, and extension without modifying core runtime logic. Follows the Open-Closed Principle."
+    },
+    {
+      "decision": "Why an Evaluator?",
+      "reason": "In mental health AI, response quality and safety are non-negotiable. The evaluator acts as a quality gate — scoring every response before delivery. Low-scoring responses trigger fallback or regeneration. This prevents harmful outputs."
+    }
+  ],
+  "challenges": [
+    "Building a reliable planner that correctly identifies crisis situations — solved with multi-signal classification and conservative thresholds",
+    "Balancing response quality with latency — solved with LLM routing (fast models for simple queries, capable models for complex ones)",
+    "Memory retrieval relevance — solved with hybrid memory search combining recency + relevance scoring"
+  ],
+  "github": "https://github.com/adarshaldkar/mindcare-ai",
+  "portfolio_link": "#projects",
+  "is_flagship": true
+}

@@ -1,0 +1,56 @@
+{
+  "name": "VibeCoder — AI-Powered Cloud Browser IDE",
+  "tagline": "Full-featured browser IDE with AI assistant, live collaboration, and cloud execution",
+  "category": "Full Stack Product / AI Tool",
+  "status": "Completed",
+  "date": "2025",
+  "purpose": "A cloud-based browser IDE that lets developers write, run, and debug code directly in the browser with an integrated AI assistant for code generation, explanation, and debugging.",
+  "problem_solved": "Setting up local development environments is slow and machine-dependent. VibeCoder eliminates setup friction — developers get a full IDE in the browser in seconds, with AI assistance built-in.",
+  "architecture": {
+    "pipeline": [
+      "React Frontend (Monaco Editor)",
+      "WebSocket Server (real-time sync)",
+      "Node.js Backend (code execution engine)",
+      "Docker Sandbox (isolated code execution)",
+      "Gemini AI API (code assistant)",
+      "PostgreSQL (user projects, history)",
+      "Redis (session management, real-time state)"
+    ],
+    "description": "Browser-based IDE with Monaco editor (same as VS Code), WebSocket-based real-time sync, sandboxed Docker containers for safe code execution, and Gemini AI for intelligent code assistance.",
+    "key_design_choices": [
+      "Monaco Editor for VS Code-quality editing experience in browser",
+      "Docker sandboxing for safe arbitrary code execution",
+      "WebSocket for real-time collaboration and instant feedback",
+      "Gemini AI for contextual code understanding and generation"
+    ]
+  },
+  "tech_stack": ["React", "Monaco Editor", "Node.js", "Express", "WebSockets", "Docker", "PostgreSQL", "Redis", "Gemini AI API", "TypeScript"],
+  "key_achievements": [
+    "Full Monaco Editor integration (same engine as VS Code)",
+    "Sandboxed Docker code execution for 10+ programming languages",
+    "Real-time AI code assistant powered by Gemini",
+    "Multi-file project support with persistent cloud storage",
+    "Live collaboration with WebSocket sync"
+  ],
+  "engineering_decisions": [
+    {
+      "decision": "Why Monaco Editor over CodeMirror?",
+      "reason": "Monaco is the same editor engine powering VS Code. It provides better language intelligence, multi-cursor support, and developer familiarity. CodeMirror is lighter but less feature-complete for a full IDE experience."
+    },
+    {
+      "decision": "Why Docker for code execution?",
+      "reason": "Running arbitrary user code requires strict sandboxing. Docker provides container-level isolation — each execution gets a fresh container with resource limits. This prevents malicious code from affecting the host system."
+    },
+    {
+      "decision": "Why Gemini AI for the assistant?",
+      "reason": "Gemini has strong code understanding and large context window. For IDE use cases — explaining code, generating functions, debugging — Gemini's code comprehension is excellent and the free tier supports development workloads."
+    }
+  ],
+  "challenges": [
+    "Preventing container escape in Docker sandboxed execution — solved with read-only filesystems and network isolation",
+    "Latency in code execution feedback loop — optimized with container pre-warming",
+    "Monaco Editor performance with large files — solved with virtual rendering and lazy loading"
+  ],
+  "github": "https://github.com/adarshaldkar/vibecoder",
+  "portfolio_link": "#projects"
+}

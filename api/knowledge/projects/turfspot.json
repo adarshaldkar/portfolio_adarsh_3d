@@ -1,0 +1,57 @@
+{
+  "name": "TurfSpot — Sports Venue Booking Platform",
+  "tagline": "Odoo ERP-based sports venue booking — Odoo Hackathon 2025 Top 78 / 19,000+",
+  "category": "Full Stack / ERP / Hackathon",
+  "status": "Completed (Hackathon)",
+  "date": "2025",
+  "purpose": "A sports venue booking platform built on Odoo ERP with custom modules for real-time slot availability, booking management, and payment integration.",
+  "problem_solved": "Sports facility owners manage bookings via phone calls and manual ledgers. TurfSpot digitizes the entire booking process with real-time availability, online payments, and automated confirmation.",
+  "hackathon": {
+    "name": "Odoo Hackathon 2025",
+    "rank": "Top 78 out of 19,000+",
+    "significance": "Top 0.4% nationally among 19,000+ participants"
+  },
+  "architecture": {
+    "pipeline": [
+      "Odoo ERP Backend (custom modules)",
+      "TurfSpot Booking Module (custom Odoo addon)",
+      "Real-Time Slot Availability Engine",
+      "Payment Integration (Razorpay/Stripe)",
+      "Automated Booking Confirmation (email/SMS)",
+      "Admin Dashboard (Odoo native)",
+      "React Frontend (custom booking UI)"
+    ],
+    "description": "Built on Odoo ERP with custom Python modules extending Odoo's core. Custom booking logic handles slot availability, conflict detection, and payment processing. React frontend provides a consumer-friendly booking experience separate from Odoo admin.",
+    "key_design_choices": [
+      "Odoo ERP for built-in accounting, CRM, and inventory management",
+      "Custom Odoo module architecture for platform-specific booking logic",
+      "Real-time slot conflict detection with database-level locking",
+      "Separate React consumer UI from Odoo admin interface"
+    ]
+  },
+  "tech_stack": ["Odoo ERP", "Python", "PostgreSQL", "React", "Razorpay", "XML (Odoo views)", "Docker"],
+  "key_achievements": [
+    "Top 78 / 19,000+ in national Odoo Hackathon 2025 (Top 0.4%)",
+    "Custom Odoo module built from scratch in 48-hour hackathon",
+    "Real-time slot availability with conflict-free booking",
+    "Payment integration with automated confirmation workflow",
+    "Multi-venue support with admin management dashboard"
+  ],
+  "engineering_decisions": [
+    {
+      "decision": "Why Odoo ERP over custom backend?",
+      "reason": "Odoo provides built-in accounting, CRM, inventory, and reporting out-of-the-box. A sports venue business needs these modules. Building them from scratch in a 48-hour hackathon is not feasible. Odoo provides the foundation; custom modules add the platform-specific logic."
+    },
+    {
+      "decision": "Why a separate React frontend?",
+      "reason": "Odoo's default UI is optimized for business admins — not for consumer booking experiences. A separate React frontend provides a clean, mobile-friendly booking flow for end customers while Odoo handles all backend business logic."
+    }
+  ],
+  "challenges": [
+    "Learning Odoo module architecture from scratch in 48 hours — solved by studying Odoo documentation and existing module examples",
+    "Slot conflict detection under concurrent bookings — solved with PostgreSQL row-level locking",
+    "Odoo XML view customization complexity — solved with careful template inheritance"
+  ],
+  "github": "https://github.com/adarshaldkar/turfspot",
+  "portfolio_link": "#projects"
+}
