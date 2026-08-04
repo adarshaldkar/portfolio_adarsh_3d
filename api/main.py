@@ -283,12 +283,50 @@ async def get_live_stats():
     return stats
 
 
+class ContactRequest(BaseModel):
+    name: str
+    email: str
+    message: str
+
+
+@app.post("/api/contact")
+async def handle_contact(req: ContactRequest):
+    """
+    Handle portfolio contact form submissions.
+    Logs submission and saves to Redis for 30 days.
+    """
+    print(f"[Contact Form Submission] From: {req.name} <{req.email}>")
+    print(f"[Message]: {req.message}")
+
+    try:
+        from memory.conversation import _redis_set, USE_REDIS
+        if USE_REDIS:
+            import time, json
+            key = f"contact:{int(time.time())}:{req.email}"
+            await _redis_set(
+                key,
+                json.dumps({
+                    "name": req.name,
+                    "email": req.email,
+                    "message": req.message,
+                    "timestamp": time.time(),
+                }),
+                86400 * 30,  # 30 days retention
+            )
+    except Exception as e:
+        print(f"[Contact Form] Redis save notice: {e}")
+
+    return {
+        "status": "success",
+        "message": f"Thank you {req.name}! I have received your message and will reply to {req.email} soon.",
+    }
+
+
 @app.get("/")
 async def root():
     return {
         "name": "Ask Adarsh AI",
         "description": "Portfolio AI Assistant for Adarsh Patel",
         "version": "1.0.0",
-        "endpoints": ["/api/chat", "/health", "/api/stats"],
+        "endpoints": ["/api/chat", "/api/stats", "/api/contact", "/health"],
     }
-

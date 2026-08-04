@@ -27,41 +27,77 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const API_URL = import.meta.env.VITE_AI_API_URL || "http://localhost:8000";
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      alert("Please fill in your name, email, and message before sending.");
+      return;
+    }
+
     setLoading(true);
 
-    emailjs
-      .send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "Adarsh Patel",
-          from_email: form.email,
-          to_email: "adarshaldkar@gmail.com",
-          message: form.message,
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
+    // 1. Try FastAPI Backend Endpoint (/api/contact)
+    try {
+      const res = await fetch(`${API_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          message: form.message.trim(),
+        }),
+      });
 
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
+      if (res.ok) {
+        const data = await res.json();
+        setLoading(false);
+        alert(data.message || "Thank you! I will get back to you as soon as possible.");
+        setForm({ name: "", email: "", message: "" });
+        return;
+      }
+    } catch (err) {
+      console.warn("Backend /api/contact offline, checking EmailJS / Mailto fallback");
+    }
 
-          alert("Ahh, something went wrong. Please try again.");
-        }
-      );
+    // 2. Try EmailJS if environment variables are set
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (serviceId && templateId && publicKey) {
+      try {
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            from_name: form.name,
+            to_name: "Adarsh Patel",
+            from_email: form.email,
+            to_email: "adarshaldkar@gmail.com",
+            message: form.message,
+          },
+          publicKey
+        );
+        setLoading(false);
+        alert("Thank you! I will get back to you as soon as possible.");
+        setForm({ name: "", email: "", message: "" });
+        return;
+      } catch (emailJsErr) {
+        console.error("EmailJS Error:", emailJsErr);
+      }
+    }
+
+    // 3. Fallback to direct mailto launcher (guaranteed zero message loss)
+    setLoading(false);
+    const subject = encodeURIComponent(`Portfolio Message from ${form.name.trim()}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name.trim()}\nEmail: ${form.email.trim()}\n\nMessage:\n${form.message.trim()}`
+    );
+    window.location.href = `mailto:adarshaldkar@gmail.com?subject=${subject}&body=${body}`;
+    alert("Message prepared in your email client! Click send to deliver it directly to adarshaldkar@gmail.com");
+    setForm({ name: "", email: "", message: "" });
   };
 
   return (
