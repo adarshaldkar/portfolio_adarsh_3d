@@ -3,8 +3,8 @@ import { FaInstagram, FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="w-full py-8 bg-black-100 text-white border-t border-[#ffffff0d]">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <footer className="w-full pt-10 pb-28 bg-black-100 text-white border-t border-[#ffffff0d]">
+      <div className="max-w-7xl mx-auto px-6 md:pl-44 md:pr-52 flex flex-col sm:flex-row justify-between items-center gap-6">
         <div className="flex flex-col items-center sm:items-start gap-1">
           <span className="text-[#915EFF] font-bold text-lg tracking-wide">Adarsh Patel</span>
           <span className="text-secondary text-xs">Full-Stack Developer · MERN · Next.js · DSA</span>
@@ -14,7 +14,7 @@ const Footer = () => {
           © {new Date().getFullYear()} B. Adarsh Patel. Crafted with ❤️ & Three.js
         </p>
 
-        <div className="flex gap-5">
+        <div className="flex gap-5 items-center">
           {[
             { href: "https://github.com/adarshaldkar", icon: <FaGithub size={20} />, label: "GitHub" },
             { href: "https://www.linkedin.com/in/adarsh-patel14", icon: <FaLinkedin size={20} />, label: "LinkedIn" },

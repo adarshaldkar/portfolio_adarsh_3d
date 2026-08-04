@@ -201,7 +201,7 @@ export default function AIChatbot() {
           aria-label="Open Adarsh AI Assistant"
           style={{
             position: "fixed",
-            bottom: 28,
+            bottom: 24,
             right: 28,
             zIndex: 9999,
             background: "linear-gradient(135deg, #915EFF 0%, #6d3fcf 100%)",
@@ -233,13 +233,13 @@ export default function AIChatbot() {
         <div
           style={{
             position: "fixed",
-            bottom: 20,
+            bottom: 24,
             right: 20,
             zIndex: 9999,
             width: 400,
             maxWidth: "calc(100vw - 32px)",
-            height: "min(600px, calc(100vh - 40px))",
-            maxHeight: "calc(100vh - 40px)",
+            height: "min(560px, calc(100vh - 120px))",
+            maxHeight: "calc(100vh - 120px)",
             display: "flex",
             flexDirection: "column",
             background: "rgba(14, 10, 30, 0.97)",

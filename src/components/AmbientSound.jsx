@@ -50,7 +50,7 @@ const AmbientSound = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2">
+    <div className="fixed bottom-20 left-6 z-40 flex flex-col-reverse items-start gap-2">
       {/* Volume slider pop-up */}
       <AnimatePresence>
         {showVolume && (
@@ -88,7 +88,6 @@ const AmbientSound = () => {
         }}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
-        style={{ marginRight: "180px" }}          
         className={`relative w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all duration-300 ${
           isPlaying
             ? "bg-[#915EFF] border-[#915EFF] shadow-[0_0_20px_#915EFF66]"

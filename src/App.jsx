@@ -11,6 +11,8 @@ import ThemeSwitcher from "./components/ThemeSwitcher";
 import ReadingProgressBar from "./components/ReadingProgressBar";
 import VisitorCounter from "./components/VisitorCounter";
 import AmbientSound from "./components/AmbientSound";
+import HireMeBar from "./components/HireMeBar";
+import DevlogSection from "./components/DevlogSection";
 import { ThemeProvider } from "./context/ThemeContext";
 
 const MainPortfolio = () => {
@@ -61,6 +63,7 @@ const MainPortfolio = () => {
         <Tech />
         <CodingActivity />
         <Works />
+        <DevlogSection />
         <Feedbacks />
         <Contact />
         <Footer />
@@ -68,6 +71,9 @@ const MainPortfolio = () => {
 
       {/* Ask Adarsh AI — Floating Portfolio Assistant */}
       <AIChatbot />
+
+      {/* Hire Me sticky CTA — slides up after 30s */}
+      <HireMeBar />
     </>
   );
 };

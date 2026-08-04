@@ -7,6 +7,8 @@ import { services } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import { FaEnvelope, FaPhone, FaLinkedin, FaGithub } from "react-icons/fa6";
+import SkillRings from "./SkillRings";
+import GitHubStats from "./GitHubStats";
 
 const ServiceCard = ({ index, title, icon }) => (
   <Tilt className='xs:w-[250px] w-full'>
@@ -55,7 +57,7 @@ const About = () => {
           I do not just learn frameworks — I build with them. <span className="text-white font-semibold">MindCare AI</span> is a multi-source psychiatric RAG assistant with agentic orchestration and local STT. <span className="text-white font-semibold">VibeCoder</span> is a browser-based cloud IDE built from scratch with sub-second AI autocomplete. <span className="text-white font-semibold">NoiseSense</span> is a distributed IoT acoustic pipeline classifying 521 sound categories in real time. <span className="text-white font-semibold">Smart Industry 4.0</span> is a physical factory digital twin built for the Unisys Innovation Program, where we ranked <span className="text-[#915EFF] font-bold">Top 24 out of 8,000+</span> projects.
         </p>
         <p>
-          I interned as a Full Stack Engineer at <span className="text-[#915EFF] font-semibold">Planarc</span>, built a <span className="text-[#915EFF] font-semibold">Loan Verification Management System (LVMS)</span> for a fintech client, and have solved <span className="text-[#915EFF] font-bold">400+ LeetCode</span> problems across algorithms and data structures.
+          I interned as a Full Stack Engineer at <span className="text-[#915EFF] font-semibold">Planarc</span>, built a <span className="text-[#915EFF] font-semibold">Loan Verification Management System (LVMS)</span> for a fintech client, and have solved <span className="text-[#915EFF] font-bold">100+ LeetCode</span> problems across algorithms and data structures.
         </p>
         <p className="text-white font-medium italic">
           "I care about systems that actually work — grounded generation, sub-second latency, zero hallucination, and production reliability."
@@ -96,6 +98,12 @@ const About = () => {
           <FaGithub className="text-[#915EFF]" /> GitHub
         </a>
       </motion.div>
+
+      {/* Skill Proficiency Rings */}
+      <SkillRings />
+
+      {/* Live GitHub Stats */}
+      <GitHubStats />
 
       {/* Core Expertise Cards */}
       <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-8">

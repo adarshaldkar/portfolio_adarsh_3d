@@ -43,7 +43,7 @@ const VisitorCounter = () => {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 80 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="fixed bottom-24 right-5 z-40 flex items-center gap-2.5 bg-[#0f1424]/90 backdrop-blur-md border border-[#ffffff15] px-4 py-2.5 rounded-2xl shadow-2xl"
+          className="fixed bottom-40 left-6 z-40 flex items-center gap-2.5 bg-[#0f1424]/90 backdrop-blur-md border border-[#ffffff15] px-4 py-2.5 rounded-2xl shadow-2xl"
         >
           {/* Eye icon */}
           <div className="text-[#915EFF] text-lg">👁️</div>
