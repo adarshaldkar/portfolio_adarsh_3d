@@ -82,7 +82,7 @@ const Hero = () => {
             </div>
 
             <div className="bg-[#1d1836]/80 backdrop-blur-sm border border-[#ffffff15] px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm">
-              <span className="text-white font-bold text-xs">400+ Solved</span>
+              <span className="text-white font-bold text-xs">100+ Solved</span>
               <span className="text-secondary text-[11px] hidden sm:inline">LeetCode DSA</span>
             </div>
           </div>
