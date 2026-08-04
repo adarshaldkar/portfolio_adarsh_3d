@@ -233,13 +233,13 @@ export default function AIChatbot() {
         <div
           style={{
             position: "fixed",
-            bottom: 28,
-            right: 28,
+            bottom: 20,
+            right: 20,
             zIndex: 9999,
             width: 400,
             maxWidth: "calc(100vw - 32px)",
-            height: 600,
-            maxHeight: "calc(100vh - 56px)",
+            height: "min(600px, calc(100vh - 40px))",
+            maxHeight: "calc(100vh - 40px)",
             display: "flex",
             flexDirection: "column",
             background: "rgba(14, 10, 30, 0.97)",

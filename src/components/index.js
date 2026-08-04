@@ -7,8 +7,8 @@ import Experience from "./Experience";
 import Works from "./Works";
 import Feedbacks from "./Feedbacks";
 import Contact from "./Contact";
+import CodingActivity from "./CodingActivity";
 import CanvasLoader from "./Loader";
-
 
 export {
   Hero,
@@ -16,6 +16,7 @@ export {
   About,
   Tech,
   Experience,
+  CodingActivity,
   Works,
   Feedbacks,
   Contact,

@@ -1,0 +1,49 @@
+{
+  "name": "Other Projects & Open Source Repositories",
+  "tagline": "Additional open-source projects, web platforms, and full-stack tools built by Adarsh Patel on GitHub",
+  "purpose": "Showcases Adarsh's breadth in full-stack development, database tooling, e-commerce, and campus event systems beyond his 7 primary showcase projects.",
+  "projects": [
+    {
+      "name": "SkillSwap Platform",
+      "tech": "JavaScript, React, Node.js",
+      "description": "Peer-to-peer skill exchange platform allowing users to trade skills (coding, design, languages) via a request/accept matching mechanism.",
+      "github": "https://github.com/adarshaldkar/Skill_Swap_Platform"
+    },
+    {
+      "name": "E-Commerce & Cart System",
+      "tech": "TypeScript, Node.js, Express, MongoDB",
+      "description": "Full-stack e-commerce web platform featuring real-time cart state management, checkout flow, product catalog filtering, and order tracking.",
+      "github": "https://github.com/adarshaldkar/E_commerce"
+    },
+    {
+      "name": "CipherSQL Studio",
+      "tech": "JavaScript, SQL, Express",
+      "description": "Interactive browser-based SQL query sandbox for writing, testing, and visualizing relational database queries with sample schemas.",
+      "github": "https://github.com/adarshaldkar/CipherSchools-CipherSQLStudio"
+    },
+    {
+      "name": "Digital Back Office",
+      "tech": "TypeScript, React, Tailwind CSS",
+      "description": "Enterprise administration portal for internal workflow management, employee task assignment, and document tracking.",
+      "github": "https://github.com/adarshaldkar/Digital_back_Office"
+    },
+    {
+      "name": "Student Response & Feedback System",
+      "tech": "JavaScript, Node.js, HTML5",
+      "description": "Real-time classroom feedback gathering system for automated student responses, instructor polls, and analytics.",
+      "github": "https://github.com/adarshaldkar/Student_response_system"
+    },
+    {
+      "name": "Mitilence 2K26 Symposium Web Platform",
+      "tech": "JavaScript, HTML5, CSS3",
+      "description": "Official college technical fest web portal handling event registration, schedule timelines, and team participation.",
+      "github": "https://github.com/adarshaldkar/mitilence_2k26_mitronce"
+    },
+    {
+      "name": "Theekshi Boutique E-Commerce Storefront",
+      "tech": "TypeScript, React",
+      "description": "Custom boutique storefront design featuring product showcases, responsive UI, and interactive shopping gallery.",
+      "github": "https://github.com/adarshaldkar/theekshi-boutique-design"
+    }
+  ]
+}

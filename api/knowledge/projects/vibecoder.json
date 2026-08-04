@@ -1,56 +1,48 @@
 {
-  "name": "VibeCoder — AI-Powered Cloud Browser IDE",
-  "tagline": "Full-featured browser IDE with AI assistant, live collaboration, and cloud execution",
-  "category": "Full Stack Product / AI Tool",
-  "status": "Completed",
-  "date": "2025",
-  "purpose": "A cloud-based browser IDE that lets developers write, run, and debug code directly in the browser with an integrated AI assistant for code generation, explanation, and debugging.",
-  "problem_solved": "Setting up local development environments is slow and machine-dependent. VibeCoder eliminates setup friction — developers get a full IDE in the browser in seconds, with AI assistance built-in.",
+  "name": "VibeCoder — AI-Powered Cloud Web IDE",
+  "tagline": "Next.js 15, WebContainers, Monaco Editor & Gemini 1.5 Flash powered cloud browser playground",
+  "category": "Cloud IDE & GenAI",
+  "status": "Completed & Open Source",
+  "date": "2025 - 2026",
+  "purpose": "A production-grade browser-based cloud development environment running full-stack Node.js applications (React, Next.js, Express, Hono, Vue, Angular) directly inside browser sandboxes without remote server VMs.",
+  "problem_solved": "Local dev environment setup is slow, fragile, and hardware-dependent. VibeCoder boots isolated in-browser WebContainer micro-runtimes in milliseconds, complete with xterm.js terminal, Monaco editor, and Gemini 1.5 Flash AI error repair.",
   "architecture": {
     "pipeline": [
-      "React Frontend (Monaco Editor)",
-      "WebSocket Server (real-time sync)",
-      "Node.js Backend (code execution engine)",
-      "Docker Sandbox (isolated code execution)",
-      "Gemini AI API (code assistant)",
-      "PostgreSQL (user projects, history)",
-      "Redis (session management, real-time state)"
+      "Next.js 15 App Router Frontend",
+      "StackBlitz WebContainers API (in-browser Node.js runtime)",
+      "Monaco Code Editor (6 Custom Themes)",
+      "xterm.js Interactive Terminal Emulator",
+      "Gemini 1.5 Flash AI Assistant (<0.8s Latency)",
+      "AI Wrench Automated Terminal Stack Trace Error Repair",
+      "Prisma ORM + MongoDB Atlas (Workspace Persistence)",
+      "NextAuth (v5) OAuth (GitHub & Google Sign-In)"
     ],
-    "description": "Browser-based IDE with Monaco editor (same as VS Code), WebSocket-based real-time sync, sandboxed Docker containers for safe code execution, and Gemini AI for intelligent code assistance.",
+    "description": "Browser-based cloud IDE leveraging StackBlitz WebContainers for client-side Node.js execution, Monaco Editor for multi-file code editing, and Gemini 1.5 Flash for context-aware code autocomplete and 1-click terminal error repair.",
     "key_design_choices": [
-      "Monaco Editor for VS Code-quality editing experience in browser",
-      "Docker sandboxing for safe arbitrary code execution",
-      "WebSocket for real-time collaboration and instant feedback",
-      "Gemini AI for contextual code understanding and generation"
+      "WebContainers API over remote EC2/Docker containers for zero-cost instant browser execution",
+      "Gemini 1.5 Flash for <0.8s code completion latency (90%+ speedup over local LLMs)",
+      "AI Wrench automated stack trace interceptor for instant terminal bug fixes",
+      "Prisma ORM + MongoDB Atlas for persistent workspace storage and public sharing"
     ]
   },
-  "tech_stack": ["React", "Monaco Editor", "Node.js", "Express", "WebSockets", "Docker", "PostgreSQL", "Redis", "Gemini AI API", "TypeScript"],
+  "tech_stack": [
+    "Next.js 15",
+    "WebContainers API",
+    "Monaco Editor",
+    "Gemini 1.5 Flash",
+    "Prisma ORM",
+    "MongoDB Atlas",
+    "NextAuth v5",
+    "Tailwind CSS",
+    "xterm.js"
+  ],
   "key_achievements": [
-    "Full Monaco Editor integration (same engine as VS Code)",
-    "Sandboxed Docker code execution for 10+ programming languages",
-    "Real-time AI code assistant powered by Gemini",
-    "Multi-file project support with persistent cloud storage",
-    "Live collaboration with WebSocket sync"
+    "In-browser Node.js micro-runtimes across 6 full-stack templates (React, Next.js, Express, Hono, Vue, Angular)",
+    "Context-aware Gemini 1.5 Flash AI autocomplete (<0.8s latency)",
+    "AI Wrench automated terminal stack trace error repair",
+    "1-Click Public GitHub Repository import into browser sandbox",
+    "Multi-tab Monaco Editor with 6 themes and xterm.js terminal emulator"
   ],
-  "engineering_decisions": [
-    {
-      "decision": "Why Monaco Editor over CodeMirror?",
-      "reason": "Monaco is the same editor engine powering VS Code. It provides better language intelligence, multi-cursor support, and developer familiarity. CodeMirror is lighter but less feature-complete for a full IDE experience."
-    },
-    {
-      "decision": "Why Docker for code execution?",
-      "reason": "Running arbitrary user code requires strict sandboxing. Docker provides container-level isolation — each execution gets a fresh container with resource limits. This prevents malicious code from affecting the host system."
-    },
-    {
-      "decision": "Why Gemini AI for the assistant?",
-      "reason": "Gemini has strong code understanding and large context window. For IDE use cases — explaining code, generating functions, debugging — Gemini's code comprehension is excellent and the free tier supports development workloads."
-    }
-  ],
-  "challenges": [
-    "Preventing container escape in Docker sandboxed execution — solved with read-only filesystems and network isolation",
-    "Latency in code execution feedback loop — optimized with container pre-warming",
-    "Monaco Editor performance with large files — solved with virtual rendering and lazy loading"
-  ],
-  "github": "https://github.com/adarshaldkar/vibecoder",
+  "github": "https://github.com/adarshaldkar/vibecode-playground",
   "portfolio_link": "#projects"
 }

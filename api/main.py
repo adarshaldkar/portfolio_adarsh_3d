@@ -14,6 +14,7 @@ if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
+import httpx
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -27,7 +28,7 @@ from planner.execution_plan import get_capabilities, is_fallback, FALLBACK_RESPO
 from capabilities.executor import execute
 from prompts.builder import build_messages
 from memory import conversation as memory
-from providers.openrouter import stream_completion, PRIMARY_MODEL
+from providers.groq_provider import stream_completion, GROQ_PRIMARY_MODEL as PRIMARY_MODEL
 
 # -------------------------------------------------
 # App Setup
@@ -95,7 +96,7 @@ def sse_done() -> bytes:
 async def run_pipeline(session_id: str, query: str):
     """
     Full pipeline:
-    Query -> Intent -> Capabilities -> Context -> Prompt -> Stream (UTF-8 bytes)
+    Query -> Intent -> Capabilities -> Context -> Prompt -> Groq Stream (UTF-8 bytes)
     """
     # Step 1: Classify intent
     intent = classify(query)
@@ -104,24 +105,24 @@ async def run_pipeline(session_id: str, query: str):
     if is_fallback(intent):
         yield sse_bytes({"token": FALLBACK_RESPONSE})
         yield sse_done()
-        memory.add_turn(session_id, "user", query)
-        memory.add_turn(session_id, "assistant", FALLBACK_RESPONSE)
+        await memory.add_turn(session_id, "user", query)
+        await memory.add_turn(session_id, "assistant", FALLBACK_RESPONSE)
         return
 
     # Step 3: Execute capabilities -> get context
     capability_names = get_capabilities(intent)
     context = execute(capability_names, query)
 
-    # Step 4: Get conversation history
-    history = memory.get_history(session_id)
+    # Step 4: Get conversation history from Redis (persistent)
+    history = await memory.get_history(session_id)
 
     # Step 5: Build prompt messages
     messages = build_messages(query, context, history)
 
-    # Step 6: Store user turn in memory
-    memory.add_turn(session_id, "user", query)
+    # Step 6: Store user turn in Redis
+    await memory.add_turn(session_id, "user", query)
 
-    # Step 7: Stream from OpenRouter (yields str tokens)
+    # Step 7: Stream from Groq (yields str tokens, max 2048 tokens)
     full_response = []
     try:
         async for token in stream_completion(messages):
@@ -130,12 +131,12 @@ async def run_pipeline(session_id: str, query: str):
     except Exception as e:
         err_msg = "Sorry, I had trouble generating a response. Please try again."
         yield sse_bytes({"token": err_msg})
-        memory.add_turn(session_id, "assistant", err_msg)
+        await memory.add_turn(session_id, "assistant", err_msg)
         yield sse_done()
         return
 
-    # Step 8: Store assistant turn in memory
-    memory.add_turn(session_id, "assistant", "".join(full_response))
+    # Step 8: Store assistant turn in Redis
+    await memory.add_turn(session_id, "assistant", "".join(full_response))
 
     # Step 9: Send metadata + done signal
     yield sse_bytes({"intent": intent.value, "capabilities": capability_names})
@@ -176,11 +177,118 @@ async def health():
     }
 
 
+@app.get("/api/stats")
+@app.get("/stats")
+async def get_live_stats():
+    """
+    Fetch live statistics server-side for GitHub (@adarshaldkar) and LeetCode (@Adarsh_Patel_14)
+    bypassing browser CORS and rate limits.
+    """
+    stats = {
+        "github": {
+            "username": "adarshaldkar",
+            "public_repos": 34,
+            "followers": 6,
+            "following": 13,
+            "commitsThisYear": "450+",
+        },
+        "leetcode": {
+            "username": "Adarsh_Patel_14",
+            "totalSolved": 79,
+            "totalQuestions": 4013,
+            "easySolved": 38,
+            "easyTotal": 958,
+            "mediumSolved": 32,
+            "mediumTotal": 2095,
+            "hardSolved": 9,
+            "hardTotal": 960,
+            "acceptanceRate": "87.7%",
+            "ranking": "#2,048,253",
+            "contributionPoints": 332,
+            "recentProblems": [
+                "3Sum",
+                "Intersection of Two Arrays II",
+                "Stone Game III",
+                "Ones and Zeroes",
+                "Predict the Winner",
+            ],
+        },
+    }
+
+    # 1. Fetch GitHub Live Stats
+    try:
+        async with httpx.AsyncClient(timeout=5.0) as client:
+            gh_res = await client.get(
+                "https://api.github.com/users/adarshaldkar",
+                headers={"User-Agent": "FastAPI-Portfolio"},
+            )
+            if gh_res.status_code == 200:
+                gh_data = gh_res.json()
+                stats["github"]["public_repos"] = gh_data.get("public_repos", 34)
+                stats["github"]["followers"] = gh_data.get("followers", 6)
+                stats["github"]["following"] = gh_data.get("following", 13)
+    except Exception as e:
+        print(f"[Stats Endpoint] GitHub live fetch exception: {e}")
+
+    # 2. Fetch LeetCode Live Stats via Alfa LeetCode API
+    try:
+        async with httpx.AsyncClient(timeout=6.0) as client:
+            lc_res = await client.get(
+                "https://alfa-leetcode-api.onrender.com/userProfile/Adarsh_Patel_14",
+                headers={"User-Agent": "FastAPI-Portfolio"},
+            )
+            if lc_res.status_code == 200:
+                lc_data = lc_res.json()
+                if lc_data.get("totalSolved") is not None:
+                    stats["leetcode"]["totalSolved"] = lc_data["totalSolved"]
+                    stats["leetcode"]["totalQuestions"] = lc_data.get("totalQuestions", 4013)
+                    stats["leetcode"]["easySolved"] = lc_data.get("easySolved", 38)
+                    stats["leetcode"]["easyTotal"] = lc_data.get("totalEasy", 958)
+                    stats["leetcode"]["mediumSolved"] = lc_data.get("mediumSolved", 32)
+                    stats["leetcode"]["mediumTotal"] = lc_data.get("totalMedium", 2095)
+                    stats["leetcode"]["hardSolved"] = lc_data.get("hardSolved", 9)
+                    stats["leetcode"]["hardTotal"] = lc_data.get("totalHard", 960)
+                    if lc_data.get("ranking"):
+                        stats["leetcode"]["ranking"] = f"#{lc_data['ranking']:,}"
+                    if lc_data.get("contributionPoint"):
+                        stats["leetcode"]["contributionPoints"] = lc_data["contributionPoint"]
+
+                    # Calculate acceptance rate
+                    tot_sub = next(
+                        (s["submissions"] for s in lc_data.get("totalSubmissions", []) if s.get("difficulty") == "All"),
+                        212,
+                    )
+                    ac_sub = next(
+                        (
+                            s["submissions"]
+                            for s in lc_data.get("matchedUserStats", {}).get("acSubmissionNum", [])
+                            if s.get("difficulty") == "All"
+                        ),
+                        186,
+                    )
+                    if tot_sub > 0:
+                        stats["leetcode"]["acceptanceRate"] = f"{((ac_sub / tot_sub) * 100):.1f}%"
+
+                    # Recent submissions
+                    recent = lc_data.get("recentSubmissions", [])
+                    if recent:
+                        accepted_titles = list(
+                            dict.fromkeys([r["title"] for r in recent if r.get("statusDisplay") == "Accepted"])
+                        )[:5]
+                        if accepted_titles:
+                            stats["leetcode"]["recentProblems"] = accepted_titles
+    except Exception as e:
+        print(f"[Stats Endpoint] LeetCode live fetch exception: {e}")
+
+    return stats
+
+
 @app.get("/")
 async def root():
     return {
         "name": "Ask Adarsh AI",
         "description": "Portfolio AI Assistant for Adarsh Patel",
         "version": "1.0.0",
-        "endpoints": ["/api/chat", "/health"],
+        "endpoints": ["/api/chat", "/health", "/api/stats"],
     }
+

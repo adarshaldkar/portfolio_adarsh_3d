@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
+import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, CodingActivity, Works, StarsCanvas } from "./components";
 import Footer from "./components/Footer";
 import ProjectDetailsPage from "./components/ProjectDetailsPage";
 import AIChatbot from "./components/AIChatbot";
@@ -27,6 +27,7 @@ const MainPortfolio = () => (
       <About />
       <Experience />
       <Tech />
+      <CodingActivity />
       <Works />
       <Feedbacks />
       <Contact />

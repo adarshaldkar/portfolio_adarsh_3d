@@ -72,6 +72,10 @@ export const navLinks = [
     title: "Experience",
   },
   {
+    id: "activity",
+    title: "Activity",
+  },
+  {
     id: "projects",
     title: "Projects",
   },
@@ -294,35 +298,50 @@ For analytics and compliance, an interactive Leaflet.js dashboard renders live W
   },
   {
     id: "vibecoder",
-    name: "VibeCoder — AI Cloud Browser IDE",
+    name: "VibeCoder — AI-Powered Cloud Web IDE",
     description:
-      "Cloud browser IDE supporting 6 stacks (React, Next.js, Express, Hono, Vue, Angular) via WebContainers (~15.4s cold boot, 5ms warm reconnect). Features Gemini 1.5 Flash AI code autocomplete (<0.8s latency, 90%+ improvement over local LLM), AI Wrench runtime error patcher, and AI README Generator.",
+      "Next-generation browser-based cloud IDE built with Next.js 15 App Router, WebContainers API, Monaco Editor, and Gemini 1.5 Flash. Runs full-stack applications (React, Next.js, Express, Hono, Vue, Angular) directly inside browser sandboxes with an interactive terminal and AI error repair.",
     category: "Cloud IDE & GenAI",
-    client: "Open Source AI Project",
+    client: "Open Source AI Platform",
     date: "2025 – 2026",
     tags: [
       { name: "Next.js 15", color: "blue-text-gradient" },
       { name: "WebContainers", color: "green-text-gradient" },
       { name: "Monaco Editor", color: "pink-text-gradient" },
       { name: "Gemini 1.5 Flash", color: "orange-text-gradient" },
-      { name: "Prisma", color: "blue-text-gradient" },
-      { name: "MongoDB", color: "green-text-gradient" },
+      { name: "Prisma ORM", color: "blue-text-gradient" },
+      { name: "MongoDB Atlas", color: "green-text-gradient" },
     ],
     image: project_food,
-    gallery: [project_food, project_auth],
+    gallery: [
+      { src: project_food, title: "[IMAGE PLACEHOLDER 1]: VibeCoder Editor & In-Browser WebContainer Workspace" },
+      { src: project_auth, title: "[IMAGE PLACEHOLDER 2]: Embedded Web Preview & Terminal Output" },
+      { src: project_finance, title: "[IMAGE PLACEHOLDER 3]: Gemini 1.5 Flash AI Assistant & AI Wrench Error Repair" },
+    ],
     source_code_link: "https://github.com/adarshaldkar/vibecode-playground",
     details: {
-      longDescription: `VibeCoder is a production-grade browser-based collaborative cloud development environment that runs Node.js micro-environments directly inside the browser using the WebContainers API.
+      longDescription: `VibeCoder is a high-performance browser-based cloud development environment built with Next.js 15 App Router, StackBlitz WebContainers API, Monaco Code Editor, and Google Gemini 1.5 Flash.
 
-The platform allows developers to spin up full-stack Node.js environments (React, Next.js, Express, Hono, Vue, Angular) within seconds, featuring zero-latency local terminal execution via xterm.js and a 6-theme Monaco Editor.
+The platform boots isolated Node.js micro-runtimes directly inside the browser in milliseconds without requiring remote server virtual machines. Developers can mount project files, run 'npm install' dependencies, execute commands inside an in-browser xterm.js terminal, and view live application previews in an embedded iframe.
 
-A key highlight is the AI Assistant powered by Gemini 1.5 Flash with custom prompt engineering. It delivers context-aware inline code suggestions with <0.8s latency (a 90%+ speedup over local LLM fallbacks), features an AI Wrench that automatically scans terminal errors to patch code, and generates AI README documentation by parsing workspace files simultaneously.`,
+Supported Runtimes & Framework Templates:
+• React.js (Vite) & Next.js 15 App Router
+• Express.js & Hono.js Lightweight APIs
+• Vue.js 3 & Angular Frameworks
+
+Key Intelligent Capabilities:
+1. WebContainers Browser Sandbox: Instant cold boots (~15.4s initial, 5ms warm reconnect), zero-latency terminal execution, and client-side server hosting.
+2. Context-Aware Gemini 1.5 Flash AI: Inline code suggestions with <0.8s latency (90%+ speedup over local LLM fallbacks), code explanation, and workspace context parsing.
+3. AI Wrench Terminal Patcher: Automatically intercepts xterm.js terminal error stack traces and suggests 1-click code repairs.
+4. GitHub Repository Importer: Import any public GitHub repository URL directly into an active in-browser WebContainer playground.
+5. Persistent Workspaces: Integrated with Prisma ORM and MongoDB Atlas for real-time project state persistence, OAuth (NextAuth v5), and public shareable URLs.`,
       highlights: [
-        "In-Browser Node.js Micro-Runtimes via WebContainers API (6 Stacks)",
-        "Context-Aware Gemini 1.5 Flash AI Autocomplete (<0.8s Latency)",
-        "AI Wrench Automated Terminal Runtime Error Repair",
-        "Multi-File Workspace Parsing & AI README Generator",
-        "Persistent Monaco Code Editor with xterm.js Terminal",
+        "In-Browser Node.js Micro-Runtimes via WebContainers API (6 Full-Stack Framework Templates)",
+        "Context-Aware Gemini 1.5 Flash AI Autocomplete & Explainer (<0.8s Latency)",
+        "AI Wrench Automated Terminal Stack Trace Error Repair",
+        "1-Click Public GitHub Repository Import into Browser Sandbox",
+        "Multi-Tab Monaco Code Editor with 6 Color Themes & xterm.js Interactive Terminal",
+        "Persistent Workspaces via Prisma ORM + MongoDB Atlas with NextAuth v5 OAuth",
       ],
     },
   },

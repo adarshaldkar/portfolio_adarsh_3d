@@ -65,10 +65,26 @@ PROJECT_MAP = {
     "sports booking": "turfspot.json",
     "odoo": "turfspot.json",
     "turf": "turfspot.json",
+    # Other / Additional Projects on GitHub
+    "other": "other_projects.json",
+    "other project": "other_projects.json",
+    "other projects": "other_projects.json",
+    "more project": "other_projects.json",
+    "more projects": "other_projects.json",
+    "besides": "other_projects.json",
+    "skillswap": "other_projects.json",
+    "skill swap": "other_projects.json",
+    "cart": "other_projects.json",
+    "e_commerce": "other_projects.json",
+    "e-commerce": "other_projects.json",
+    "ciphersql": "other_projects.json",
+    "sql studio": "other_projects.json",
+    "student response": "other_projects.json",
+    "mitilence": "other_projects.json",
+    "theekshi": "other_projects.json",
 }
 
 # Fuzzy prefix map — 5-char prefix of normalized project name → file
-# Catches typos and partial matches that exact keywords miss
 FUZZY_PREFIX_MAP = {
     "noise": "noisesense.json",    # noisesence, noisesens, noise...
     "vibec": "vibecoder.json",     # vibecodeer, vibecodr, vibecod...
@@ -78,11 +94,14 @@ FUZZY_PREFIX_MAP = {
     "mindc": "mindcare.json",      # mindcare, mindcar
     "docum": "documind.json",      # documind, document
     "turfs": "turfspot.json",      # turfspot
+    "skill": "other_projects.json",# skillswap
+    "ciph":  "other_projects.json",# ciphersql
 }
 
 ALL_PROJECTS_SUMMARY = """
-Adarsh has built 7 projects spanning AI systems, IoT pipelines, full-stack products, and fintech SaaS:
+Adarsh has 34 repositories on GitHub, including 7 primary portfolio showcases and 27+ open-source projects:
 
+Primary Showcase Projects:
 1. **MindCare AI** — Flagship agentic AI platform. Custom runtime, Hybrid RAG, MCP, Memory, Evaluator. No LangChain.
 2. **NoiseSense** — Distributed IoT acoustic pipeline. YAMNet ML, MQTT, InfluxDB, Grafana. 85%+ accuracy.
 3. **VibeCoder** — Cloud browser IDE with AI assistant. Monaco Editor, Docker sandboxing, Gemini AI.
@@ -91,7 +110,14 @@ Adarsh has built 7 projects spanning AI systems, IoT pipelines, full-stack produ
 6. **DocuMind** — Document RAG system. Upload PDFs and ask questions. Exact page citations.
 7. **TurfSpot** — Sports venue booking on Odoo ERP. Top 78/19,000+ in Odoo Hackathon 2025.
 
-Ask about any specific project for full architecture, tech stack, and engineering decisions.
+Other Notable GitHub Projects:
+• **SkillSwap Platform** — Peer-to-peer skill exchange platform (React, Node.js)
+• **E-Commerce & Cart System** — Full-stack shopping cart & checkout system (TypeScript, MongoDB)
+• **CipherSQL Studio** — Interactive SQL query sandbox (JavaScript, Express)
+• **Digital Back Office** — Internal enterprise workflow portal (TypeScript, React)
+• **Student Response System** — Real-time classroom feedback tool (JavaScript)
+• **Mitilence 2K26 Web Platform** — College technical fest web portal
+• **Theekshi Boutique Storefront** — Custom e-commerce storefront design (TypeScript)
 """
 
 
@@ -102,6 +128,24 @@ def _load_project(filename: str) -> dict:
 
 
 def _format_project(data: dict) -> str:
+    if "projects" in data:
+        lines = [
+            f"**{data['name']}**",
+            f"_{data['tagline']}_",
+            "",
+            f"**Purpose:** {data['purpose']}",
+            "",
+            "**Additional Shipped Projects on GitHub:**",
+        ]
+        for p in data["projects"]:
+            lines.extend([
+                f"• **{p['name']}** ({p['tech']})",
+                f"  {p['description']}",
+                f"  GitHub: {p['github']}",
+                ""
+            ])
+        return "\n".join(lines)
+
     lines = [
         f"**{data['name']}**",
         f"_{data['tagline']}_",
