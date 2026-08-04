@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <section className={`relative w-full h-screen min-h-[700px] mx-auto overflow-hidden`}>
       <div
-        className={`absolute inset-0 top-[100px] sm:top-[115px] lg:top-[125px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 pointer-events-none`}
+        className={`absolute inset-0 top-[90px] sm:top-[105px] lg:top-[115px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 pointer-events-none`}
       >
         <div className='flex flex-col justify-center items-center mt-5 pointer-events-auto'>
           <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
