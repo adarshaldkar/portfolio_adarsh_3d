@@ -83,48 +83,52 @@ body {
   animation: aurora-fade-in 2s ease forwards;
 }
 
-/* Blob 1 — Violet, top-left */
+/* Blob 1 — Primary color, top-left */
 .aurora-blob-1 {
   width: 600px;
   height: 600px;
   top: -100px;
   left: -150px;
-  background: radial-gradient(circle, #915EFF55 0%, #6d28d933 50%, transparent 70%);
+  background: var(--aurora-blob-1, radial-gradient(circle, #915EFF55 0%, #6d28d933 50%, transparent 70%));
   animation: aurora-fade-in 2s ease forwards,
              aurora-drift-1 12s ease-in-out 2s infinite alternate;
+  transition: background 0.8s ease;
 }
 
-/* Blob 2 — Teal, bottom-right */
+/* Blob 2 — Secondary color, bottom-right */
 .aurora-blob-2 {
   width: 700px;
   height: 700px;
   bottom: -200px;
   right: -200px;
-  background: radial-gradient(circle, #00cea844 0%, #0891b233 50%, transparent 70%);
+  background: var(--aurora-blob-2, radial-gradient(circle, #00cea844 0%, #0891b233 50%, transparent 70%));
   animation: aurora-fade-in 2.5s ease forwards,
              aurora-drift-2 15s ease-in-out 2s infinite alternate;
+  transition: background 0.8s ease;
 }
 
-/* Blob 3 — Pink/purple, top-right */
+/* Blob 3 — Accent color, top-right */
 .aurora-blob-3 {
   width: 450px;
   height: 450px;
   top: 30%;
   right: -80px;
-  background: radial-gradient(circle, #bf61ff33 0%, #915EFF22 50%, transparent 70%);
+  background: var(--aurora-blob-3, radial-gradient(circle, #bf61ff33 0%, #915EFF22 50%, transparent 70%));
   animation: aurora-fade-in 3s ease forwards,
              aurora-drift-3 18s ease-in-out 2s infinite alternate;
+  transition: background 0.8s ease;
 }
 
-/* Blob 4 — Deep violet, bottom-left */
+/* Blob 4 — Deep tone, bottom-left */
 .aurora-blob-4 {
   width: 500px;
   height: 500px;
   bottom: 20%;
   left: -100px;
-  background: radial-gradient(circle, #4f46e522 0%, #7c3aed1a 50%, transparent 70%);
+  background: var(--aurora-blob-4, radial-gradient(circle, #4f46e522 0%, #7c3aed1a 50%, transparent 70%));
   animation: aurora-fade-in 3.5s ease forwards,
              aurora-drift-4 20s ease-in-out 2s infinite alternate;
+  transition: background 0.8s ease;
 }
 
 /* ── Keyframes ── */
@@ -342,3 +346,61 @@ body {
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
   }
 }
+
+/* ─────────────────────────────────────────
+   HOLOGRAPHIC TILT CARD SHIMMER
+   ───────────────────────────────────────── */
+
+/* Hide default cursor — we use CustomCursor.jsx */
+* {
+  cursor: none !important;
+}
+/* Restore cursor on mobile / touch devices */
+@media (pointer: coarse) {
+  * { cursor: auto !important; }
+}
+
+/* Holographic rainbow shimmer on Tilt project cards */
+.tilt-card-holo {
+  position: relative;
+  overflow: hidden;
+}
+
+.tilt-card-holo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.06) 30%,
+    rgba(145, 94, 255, 0.10) 40%,
+    rgba(0, 206, 168, 0.10) 50%,
+    rgba(6, 182, 212, 0.10) 60%,
+    rgba(255, 255, 255, 0.06) 70%,
+    transparent 80%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+  border-radius: inherit;
+}
+
+.tilt-card-holo:hover::before {
+  opacity: 1;
+  animation: holo-shimmer 2s linear infinite;
+}
+
+@keyframes holo-shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Reading progress bar glow pulse */
+@keyframes progress-glow {
+  0%, 100% { box-shadow: 0 0 6px #915EFF88, 0 0 12px #915EFF44; }
+  50%       { box-shadow: 0 0 12px #915EFFcc, 0 0 24px #915EFF66; }
+}
+

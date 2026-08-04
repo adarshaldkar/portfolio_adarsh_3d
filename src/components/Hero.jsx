@@ -1,10 +1,35 @@
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
+import confetti from "canvas-confetti";
 
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 
+
 const Hero = () => {
+  const fireConfetti = () => {
+    const end = Date.now() + 1500;
+    const colors = ["#915EFF", "#00cea8", "#bf61ff", "#06b6d4", "#ffffff"];
+    const frame = () => {
+      confetti({
+        particleCount: 4,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors,
+      });
+      confetti({
+        particleCount: 4,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors,
+      });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    };
+    frame();
+  };
+
   return (
     <section className={`relative w-full h-screen min-h-[700px] mx-auto overflow-hidden`}>
       <div
@@ -93,9 +118,10 @@ const Hero = () => {
 
             <a
               href="#contact"
-              className="px-5 py-2.5 rounded-full border border-[#915EFF] text-white text-xs sm:text-sm font-semibold hover:bg-[#915EFF22] transition-all duration-300 flex items-center gap-1.5"
+              onClick={fireConfetti}
+              className="px-5 py-2.5 rounded-full border border-[#915EFF] text-white text-xs sm:text-sm font-semibold hover:bg-[#915EFF22] transition-all duration-300 flex items-center gap-1.5 cursor-pointer"
             >
-              Get In Touch
+              🎉 Get In Touch
             </a>
           </motion.div>
         </div>

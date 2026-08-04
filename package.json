@@ -13,6 +13,7 @@
     "@gsap/react": "^2.1.2",
     "@react-three/drei": "^9.56.24",
     "@react-three/fiber": "^8.11.1",
+    "canvas-confetti": "^1.9.4",
     "email-js": "^2.0.3",
     "framer-motion": "^9.0.7",
     "gsap": "^3.12.7",

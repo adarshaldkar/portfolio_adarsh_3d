@@ -28,8 +28,8 @@ const ProjectCard = ({
       className="w-full"
     >
       <Tilt
-        options={{ max: 10, scale: 1.02, speed: 400 }}
-        className="w-full bg-tertiary rounded-3xl overflow-hidden cursor-pointer group border border-[#ffffff08] hover:border-[#915EFF44] transition-all duration-300 hover:shadow-[0_0_40px_#915EFF22]"
+        options={{ max: 12, scale: 1.03, speed: 400 }}
+        className="w-full bg-tertiary rounded-3xl overflow-hidden cursor-pointer group border border-[#ffffff08] hover:border-[#915EFF44] transition-all duration-300 hover:shadow-[0_0_40px_#915EFF22] tilt-card-holo"
         onClick={handleOpenDetails}
       >
         {/* Image */}
