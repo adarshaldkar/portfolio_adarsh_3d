@@ -49,9 +49,9 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Outer Glowing Ring */}
+      {/* Outer Glowing Ring — must be above all modals (z-[99999]) */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-[#915EFF] pointer-events-none z-[9999] mix-blend-screen shadow-[0_0_15px_#915EFF88]"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-[#915EFF] pointer-events-none z-[99999] mix-blend-screen shadow-[0_0_15px_#915EFF88]"
         animate={{
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,
@@ -61,9 +61,9 @@ const CustomCursor = () => {
         transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
       />
 
-      {/* Inner Dot */}
+      {/* Inner Dot — must be above all modals (z-[99999]) */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-[#915EFF] pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-[#915EFF] pointer-events-none z-[99999]"
         animate={{
           x: mousePosition.x - 4,
           y: mousePosition.y - 4,
