@@ -289,15 +289,49 @@ class ContactRequest(BaseModel):
     message: str
 
 
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
+
+
+async def _send_telegram_notification(name: str, email: str, message: str):
+    """Send real-time alert to Adarsh's phone via Telegram Bot."""
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        return
+
+    text = f"""📬 *NEW PORTFOLIO CONTACT MESSAGE*
+
+👤 *Name:* {name}
+📧 *Email:* `{email}`
+
+💬 *Message:*
+{message}
+"""
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    try:
+        async with httpx.AsyncClient(timeout=8.0) as client:
+            await client.post(
+                url,
+                json={
+                    "chat_id": TELEGRAM_CHAT_ID,
+                    "text": text,
+                    "parse_mode": "Markdown",
+                },
+            )
+            print(f"[Telegram Notification] Sent to Chat ID {TELEGRAM_CHAT_ID} successfully!")
+    except Exception as e:
+        print(f"[Telegram Notification] Exception: {e}")
+
+
 @app.post("/api/contact")
 async def handle_contact(req: ContactRequest):
     """
     Handle portfolio contact form submissions.
-    Logs submission and saves to Redis for 30 days.
+    Saves to Redis & sends instant push notification to Telegram.
     """
     print(f"[Contact Form Submission] From: {req.name} <{req.email}>")
     print(f"[Message]: {req.message}")
 
+    # 1. Save to Redis
     try:
         from memory.conversation import _redis_set, USE_REDIS
         if USE_REDIS:
@@ -316,9 +350,12 @@ async def handle_contact(req: ContactRequest):
     except Exception as e:
         print(f"[Contact Form] Redis save notice: {e}")
 
+    # 2. Send instant Telegram push notification to Adarsh's phone
+    await _send_telegram_notification(req.name, req.email, req.message)
+
     return {
         "status": "success",
-        "message": f"Thank you {req.name}! I have received your message and will reply to {req.email} soon.",
+        "message": f"Thank you {req.name}! Your message has been sent to Adarsh. He will reply to {req.email} soon.",
     }
 
 
