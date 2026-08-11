@@ -50,7 +50,7 @@ const AmbientSound = () => {
   };
 
   return (
-    <div className="fixed bottom-20 left-6 z-40 flex flex-col-reverse items-start gap-2">
+    <div className="fixed bottom-16 left-3 sm:bottom-20 sm:left-6 z-40 flex flex-col-reverse items-start gap-2">
       {/* Volume slider pop-up */}
       <AnimatePresence>
         {showVolume && (

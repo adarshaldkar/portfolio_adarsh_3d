@@ -42,7 +42,7 @@ const HireMeBar = () => {
           animate={{ y: 0, x: "-50%", opacity: 1 }}
           exit={{ y: 60, x: "-50%", opacity: 0 }}
           transition={{ type: "spring", stiffness: 350, damping: 26 }}
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[9980] flex items-center justify-between gap-3 px-5 py-2.5 rounded-full w-[90%] max-w-lg border border-[#915EFF55] bg-[#0a061e]/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(145,94,255,0.25)]"
+          className="hidden sm:flex fixed bottom-6 left-1/2 -translate-x-1/2 z-[9980] items-center justify-between gap-3 px-5 py-2.5 rounded-full w-[90%] max-w-lg border border-[#915EFF55] bg-[#0a061e]/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(145,94,255,0.25)]"
         >
           {/* Status indicator + title */}
           <div className="flex items-center gap-3 overflow-hidden">

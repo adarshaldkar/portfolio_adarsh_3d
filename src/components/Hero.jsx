@@ -33,11 +33,11 @@ const Hero = () => {
   return (
     <section className={`relative w-full h-screen min-h-[700px] mx-auto overflow-hidden`}>
       <div
-        className={`absolute inset-0 top-[90px] sm:top-[105px] lg:top-[115px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 pointer-events-none`}
+        className={`absolute inset-0 top-[80px] sm:top-[105px] lg:top-[115px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-2.5 sm:gap-5 pointer-events-none`}
       >
-        <div className='flex flex-col justify-center items-center mt-5 pointer-events-auto'>
-          <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
-          <div className='w-1 sm:h-80 h-40 violet-gradient' />
+        <div className='flex flex-col justify-center items-center mt-3 sm:mt-5 pointer-events-auto'>
+          <div className='w-3.5 h-3.5 sm:w-5 sm:h-5 rounded-full bg-[#915EFF]' />
+          <div className='w-1 sm:h-80 h-36 violet-gradient' />
         </div>
 
         <div className="z-10 relative pointer-events-auto max-w-2xl">
@@ -70,20 +70,20 @@ const Hero = () => {
           </p>
 
           {/* 3 Compact Stat Badges */}
-          <div className="mt-3 flex flex-wrap gap-2">
-            <div className="bg-[#1d1836]/80 backdrop-blur-sm border border-[#ffffff15] px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm">
-              <span className="text-white font-bold text-xs">Top 78 / 19,000+</span>
-              <span className="text-secondary text-[11px] hidden sm:inline">Odoo Hackathon</span>
+          <div className="mt-3 flex flex-wrap gap-1.5 sm:gap-2">
+            <div className="bg-[#1d1836]/80 backdrop-blur-sm border border-[#ffffff15] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm">
+              <span className="text-white font-bold text-[11px] sm:text-xs">Top 78 / 19,000+</span>
+              <span className="text-secondary text-[10px] sm:text-[11px] hidden xs:inline">Odoo</span>
             </div>
 
-            <div className="bg-[#1d1836]/80 backdrop-blur-sm border border-[#ffffff15] px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm">
-              <span className="text-white font-bold text-xs">Top 24 / 8,000+</span>
-              <span className="text-secondary text-[11px] hidden sm:inline">Unisys Innovation</span>
+            <div className="bg-[#1d1836]/80 backdrop-blur-sm border border-[#ffffff15] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm">
+              <span className="text-white font-bold text-[11px] sm:text-xs">Top 24 / 8,000+</span>
+              <span className="text-secondary text-[10px] sm:text-[11px] hidden xs:inline">Unisys</span>
             </div>
 
-            <div className="bg-[#1d1836]/80 backdrop-blur-sm border border-[#ffffff15] px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm">
-              <span className="text-white font-bold text-xs">100+ Solved</span>
-              <span className="text-secondary text-[11px] hidden sm:inline">LeetCode DSA</span>
+            <div className="bg-[#1d1836]/80 backdrop-blur-sm border border-[#ffffff15] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm">
+              <span className="text-white font-bold text-[11px] sm:text-xs">100+ Solved</span>
+              <span className="text-secondary text-[10px] sm:text-[11px] hidden xs:inline">LeetCode</span>
             </div>
           </div>
 
@@ -92,11 +92,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="mt-4 flex flex-wrap gap-3"
+            className="mt-4 flex flex-wrap items-center gap-2.5 sm:gap-3"
           >
             <a
               href="#projects"
-              className="px-5 py-2.5 rounded-full bg-[#915EFF] text-white text-xs sm:text-sm font-semibold hover:bg-[#7c4de0] transition-all duration-300 hover:shadow-[0_0_20px_#915EFF88] flex items-center gap-1.5"
+              className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#915EFF] text-white text-xs sm:text-sm font-semibold hover:bg-[#7c4de0] transition-all duration-300 hover:shadow-[0_0_20px_#915EFF88] flex items-center gap-1.5"
             >
               Explore Projects
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -108,7 +108,7 @@ const Hero = () => {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs sm:text-sm font-semibold hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] flex items-center gap-1.5"
+              className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs sm:text-sm font-semibold hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] flex items-center gap-1.5"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -119,7 +119,7 @@ const Hero = () => {
             <a
               href="#contact"
               onClick={fireConfetti}
-              className="px-5 py-2.5 rounded-full border border-[#915EFF] text-white text-xs sm:text-sm font-semibold hover:bg-[#915EFF22] transition-all duration-300 flex items-center gap-1.5 cursor-pointer"
+              className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[#915EFF] text-white text-xs sm:text-sm font-semibold hover:bg-[#915EFF22] transition-all duration-300 flex items-center gap-1.5 cursor-pointer"
             >
               🎉 Get In Touch
             </a>

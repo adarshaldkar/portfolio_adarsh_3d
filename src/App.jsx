@@ -20,12 +20,6 @@ const MainPortfolio = () => {
 
   return (
     <>
-      {/* ── Custom Glow Cursor ── */}
-      <CustomCursor />
-
-      {/* ── Reading Progress Bar ── */}
-      <ReadingProgressBar />
-
       {/* ── Visitor Counter Toast ── */}
       <VisitorCounter />
 
@@ -69,9 +63,6 @@ const MainPortfolio = () => {
         <Footer />
       </div>
 
-      {/* Ask Adarsh AI — Floating Portfolio Assistant */}
-      <AIChatbot />
-
       {/* Hire Me sticky CTA — slides up after 30s */}
       <HireMeBar />
     </>
@@ -82,6 +73,15 @@ const App = () => {
   return (
     <ThemeProvider>
       <BrowserRouter>
+        {/* ── Global Custom Glow Cursor (Active on ALL routes) ── */}
+        <CustomCursor />
+
+        {/* ── Global Reading Progress Bar ── */}
+        <ReadingProgressBar />
+
+        {/* ── Global AI Assistant Chatbot ── */}
+        <AIChatbot />
+
         <Routes>
           <Route path="/" element={<MainPortfolio />} />
           <Route path="/project/:id" element={<ProjectDetailsPage />} />

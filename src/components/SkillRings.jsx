@@ -96,7 +96,7 @@ const SkillRings = () => {
         Skill Proficiency
       </motion.p>
 
-      <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 justify-items-center">
+      <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-6 gap-4 sm:gap-6 justify-items-center">
         {SKILLS.map((skill, i) => (
           <motion.div
             key={skill.name}

@@ -73,7 +73,7 @@ const GitHubStats = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="mt-8 relative overflow-hidden rounded-2xl border border-[#ffffff12] bg-[#0f1424]/80 backdrop-blur-md p-5"
+      className="mt-8 relative overflow-hidden rounded-2xl border border-[#ffffff12] bg-[#0f1424]/80 backdrop-blur-md p-3.5 sm:p-5"
       style={{ boxShadow: "0 0 40px rgba(145,94,255,0.08)" }}
     >
       {/* Header */}

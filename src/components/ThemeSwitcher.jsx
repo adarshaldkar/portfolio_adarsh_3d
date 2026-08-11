@@ -5,7 +5,7 @@ const ThemeSwitcher = () => {
   const { currentTheme, setCurrentTheme } = useTheme();
 
   return (
-    <div className="fixed bottom-6 left-6 z-40 bg-[#0f1424]/80 backdrop-blur-md border border-[#ffffff15] p-1.5 rounded-full shadow-2xl flex items-center gap-1.5">
+    <div className="fixed bottom-3 left-3 sm:bottom-6 sm:left-6 z-40 bg-[#0f1424]/80 backdrop-blur-md border border-[#ffffff15] p-1.5 rounded-full shadow-2xl flex items-center gap-1.5">
       {Object.keys(THEMES).map((key) => {
         const theme = THEMES[key];
         const isActive = currentTheme === key;

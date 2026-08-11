@@ -136,7 +136,7 @@ const Tech = () => {
             }}
           />
 
-          <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-4 relative z-10">
+          <div className="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-2.5 sm:gap-4 relative z-10">
             {technologies.map((technology, index) => (
               <TechOrb
                 key={technology.name}

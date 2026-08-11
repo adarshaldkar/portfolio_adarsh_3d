@@ -359,11 +359,85 @@ async def handle_contact(req: ContactRequest):
     }
 
 
+class ContactRequest(BaseModel):
+    name: str
+    email: str
+    message: str
+
+
+class ReviewRequest(BaseModel):
+    name: str
+    designation: str
+    company: str
+    testimonial: str
+
+
+DEFAULT_REVIEWS = [
+    {
+        "name": "Kiran Mehta",
+        "designation": "Product Manager",
+        "company": "FoodFast",
+        "testimonial": "Adarsh built our food delivery platform with exceptional attention to UX detail. The real-time order tracking feature alone exceeded our expectations.",
+        "image": "https://api.dicebear.com/7.x/avataaars/svg?seed=KiranMehta&backgroundColor=b6e3f4",
+    },
+    {
+        "name": "Priya Sharma",
+        "designation": "Co-Founder",
+        "company": "SkillSwap",
+        "testimonial": "The SkillSwap platform Adarsh delivered was smooth, intuitive, and technically solid. His MERN stack expertise really showed in the final product.",
+        "image": "https://api.dicebear.com/7.x/avataaars/svg?seed=PriyaSharma&backgroundColor=c0aede",
+    },
+    {
+        "name": "Rahul Verma",
+        "designation": "CTO",
+        "company": "Bluestock Fintech",
+        "testimonial": "After Adarsh optimized our finance platform with Next.js, load times dropped by 60%. His code is clean, well-documented, and maintainable.",
+        "image": "https://api.dicebear.com/7.x/avataaars/svg?seed=RahulVerma&backgroundColor=d1d4f9",
+    },
+]
+
+DYNAMIC_REVIEWS = []
+
+
+@app.get("/api/reviews")
+async def get_reviews():
+    """Get all portfolio reviews (dynamic + defaults)."""
+    return {"reviews": DYNAMIC_REVIEWS + DEFAULT_REVIEWS}
+
+
+@app.post("/api/reviews")
+async def add_review(req: ReviewRequest):
+    """Submit a new testimonial/review dynamically."""
+    import time
+    avatar_seed = req.name.replace(" ", "")
+    new_review = {
+        "name": req.name,
+        "designation": req.designation,
+        "company": req.company,
+        "testimonial": req.testimonial,
+        "image": f"https://api.dicebear.com/7.x/avataaars/svg?seed={avatar_seed}&backgroundColor=c0aede",
+        "created_at": time.time(),
+    }
+    DYNAMIC_REVIEWS.insert(0, new_review)
+
+    # Send instant Telegram push alert to Adarsh's phone
+    if TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
+        text = f"⭐ *NEW PORTFOLIO CUSTOMER REVIEW*\n\n👤 *Name:* {req.name}\n💼 *Role:* {req.designation} at {req.company}\n\n💬 *Review:*\n\"{req.testimonial}\""
+        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+        try:
+            async with httpx.AsyncClient(timeout=8.0) as client:
+                await client.post(url, json={"chat_id": TELEGRAM_CHAT_ID, "text": text, "parse_mode": "Markdown"})
+        except Exception as e:
+            print(f"[Telegram Review Alert] Error: {e}")
+
+    return {"status": "success", "message": "Review added successfully!", "review": new_review}
+
+
 @app.get("/")
 async def root():
     return {
         "name": "Ask Adarsh AI",
         "description": "Portfolio AI Assistant for Adarsh Patel",
         "version": "1.0.0",
-        "endpoints": ["/api/chat", "/api/stats", "/api/contact", "/health"],
+        "endpoints": ["/api/chat", "/api/stats", "/api/contact", "/api/reviews", "/health"],
     }

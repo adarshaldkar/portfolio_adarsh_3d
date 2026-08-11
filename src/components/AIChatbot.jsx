@@ -199,58 +199,18 @@ export default function AIChatbot() {
         <button
           onClick={() => setIsOpen(true)}
           aria-label="Open Adarsh AI Assistant"
-          style={{
-            position: "fixed",
-            bottom: 24,
-            right: 28,
-            zIndex: 9999,
-            background: "linear-gradient(135deg, #915EFF 0%, #6d3fcf 100%)",
-            color: "#fff",
-            border: "none",
-            borderRadius: 50,
-            padding: "14px 22px",
-            fontSize: "0.9rem",
-            fontWeight: 600,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            fontFamily: "inherit",
-            animation: "badgePulse 2.5s ease-in-out infinite",
-            boxShadow: "0 8px 32px rgba(145,94,255,0.45)",
-            transition: "transform 0.2s ease",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-7 z-[9999] bg-gradient-to-r from-[#915EFF] to-[#6d3fcf] text-white px-3.5 py-2.5 sm:px-5 sm:py-3.5 rounded-full font-semibold text-xs sm:text-sm shadow-[0_8px_32px_rgba(145,94,255,0.45)] flex items-center gap-1.5 sm:gap-2 transition-transform duration-200 hover:scale-105 active:scale-95 cursor-pointer font-inherit border-none"
         >
-          <span style={{ fontSize: "1.1rem" }}>🤖</span>
-          Ask Adarsh AI
+          <span className="text-base sm:text-lg">🤖</span>
+          <span className="hidden sm:inline">Ask Adarsh AI</span>
+          <span className="sm:hidden text-xs">Ask AI</span>
         </button>
       )}
 
       {/* Chat Window */}
       {isOpen && (
         <div
-          style={{
-            position: "fixed",
-            bottom: 24,
-            right: 20,
-            zIndex: 9999,
-            width: 400,
-            maxWidth: "calc(100vw - 32px)",
-            height: "min(560px, calc(100vh - 120px))",
-            maxHeight: "calc(100vh - 120px)",
-            display: "flex",
-            flexDirection: "column",
-            background: "rgba(14, 10, 30, 0.97)",
-            backdropFilter: "blur(20px)",
-            border: "1px solid rgba(145,94,255,0.35)",
-            borderRadius: 20,
-            boxShadow: "0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(145,94,255,0.1)",
-            fontFamily: "'Inter', 'Segoe UI', sans-serif",
-            animation: "chatSlideIn 0.3s ease",
-            overflow: "hidden",
-          }}
+          className="fixed inset-x-2 bottom-2 sm:bottom-6 sm:right-5 sm:left-auto z-[9999] w-auto sm:w-[400px] h-[520px] max-h-[85vh] flex flex-col bg-[#0e0a1e]/98 backdrop-blur-2xl border border-[#915EFF55] rounded-3xl shadow-[0_24px_80px_rgba(0,0,0,0.8)] overflow-hidden font-sans"
         >
           {/* Header */}
           <div
