@@ -49,7 +49,7 @@ const ComputersCanvas = () => {
   return (
     !isMobile && ( // Hide on mobile screens
       <Canvas
-        frameloop="demand"
+        frameloop="always"
         shadows
         dpr={[1, 2]}
         camera={{ position: [20, 3, 5], fov: 25 }}
@@ -58,8 +58,10 @@ const ComputersCanvas = () => {
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls
             enableZoom={false}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
+            enablePan={false}
+            rotateSpeed={0.8}
+            minPolarAngle={Math.PI / 6}
+            maxPolarAngle={Math.PI / 1.85}
           />
           <Computers />
         </Suspense>
