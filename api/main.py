@@ -433,11 +433,18 @@ async def add_review(req: ReviewRequest):
     return {"status": "success", "message": "Review added successfully!", "review": new_review}
 
 
+@app.get("/health")
+@app.get("/ping")
+async def health_check():
+    """Health check & keep-alive ping endpoint for UptimeRobot / Cron-Job.org."""
+    return {"status": "ok", "message": "Ask Adarsh AI Backend is awake and healthy!"}
+
+
 @app.get("/")
 async def root():
     return {
         "name": "Ask Adarsh AI",
         "description": "Portfolio AI Assistant for Adarsh Patel",
         "version": "1.0.0",
-        "endpoints": ["/api/chat", "/api/stats", "/api/contact", "/api/reviews", "/health"],
+        "endpoints": ["/api/chat", "/api/stats", "/api/contact", "/api/reviews", "/health", "/ping"],
     }
