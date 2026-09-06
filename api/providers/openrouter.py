@@ -10,19 +10,18 @@ import json
 import httpx
 from typing import AsyncGenerator
 
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1/chat/completions"
 
-PRIMARY_MODEL = os.getenv("OPENROUTER_MODEL", "google/gemma-4-31b-it:free")
-FALLBACK_MODEL = os.getenv("OPENROUTER_FALLBACK", "nvidia/nemotron-3-super-120b-a12b:free")
+PRIMARY_MODEL = os.getenv("OPENROUTER_MODEL", "meta-llama/llama-3.1-8b-instruct:free")
+FALLBACK_MODEL = os.getenv("OPENROUTER_FALLBACK", "mistralai/mistral-7b-instruct:free")
 
 # Chain of fallback models — tried in order on 404 / timeout
 FALLBACK_CHAIN = [
     PRIMARY_MODEL,
     FALLBACK_MODEL,
-    "openai/gpt-oss-20b:free",
-    "google/gemma-4-26b-a4b-it:free",
-    "nvidia/nemotron-3-nano-30b-a3b:free",
+    "meta-llama/llama-3.1-8b-instruct:free",
+    "mistralai/mistral-7b-instruct:free",
+    "google/gemma-2-9b-it:free",
 ]
 
 TEMPERATURE = 0.2
@@ -30,13 +29,17 @@ MAX_TOKENS = 800
 
 
 def _get_headers() -> dict:
+    key = os.getenv("OPENROUTER_API_KEY", "").strip()
+    if not key:
+        raise ValueError("OPENROUTER_API_KEY is missing or empty")
     return {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Authorization": f"Bearer {key}",
         "Content-Type": "application/json",
         "HTTP-Referer": "https://adarsh-portfolio.vercel.app",
         "X-Title": "Adarsh AI -- Portfolio Assistant",
         "Accept-Charset": "utf-8",
     }
+
 
 
 async def _try_single_model(

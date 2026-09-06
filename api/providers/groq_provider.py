@@ -27,10 +27,14 @@ MAX_TOKENS = 2048    # 2.5x more than old 800-token OpenRouter cap
 
 
 def _get_headers() -> dict:
+    key = os.getenv("GROQ_API_KEY", "").strip()
+    if not key:
+        raise ValueError("GROQ_API_KEY is missing or empty")
     return {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Authorization": f"Bearer {key}",
         "Content-Type": "application/json",
     }
+
 
 
 async def _try_groq_model(
