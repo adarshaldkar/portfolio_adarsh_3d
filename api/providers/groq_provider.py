@@ -15,15 +15,18 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 GROQ_BASE_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 # Best free Groq models — tried in order
-GROQ_PRIMARY_MODEL = "llama-3.3-70b-versatile"
+GROQ_PRIMARY_MODEL = "qwen/qwen3.6-27b"
 GROQ_FALLBACK_CHAIN = [
-    "llama-3.3-70b-versatile",   # Best quality, 32k context, 8192 max output
-    "gemma2-9b-it",               # Lightweight, fast, good quality
-    "llama-3.1-8b-instant",       # Ultra-fast fallback
+    "qwen/qwen3.6-27b",
+    "groq/compound",
+    "groq/compound-mini",
+    "openai/gpt-oss-20b",
 ]
 
+
 TEMPERATURE = 0.2
-MAX_TOKENS = 2048    # 2.5x more than old 800-token OpenRouter cap
+MAX_TOKENS = 2048
+
 
 
 def _get_headers() -> dict:
