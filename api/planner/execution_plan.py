@@ -5,6 +5,7 @@ Execution Plan — Maps intents to ordered capability lists.
 from .intent_classifier import Intent
 
 EXECUTION_MAP: dict[Intent, list[str]] = {
+    Intent.HR:           ["hr", "resume", "achievements"],
     Intent.PROJECT:      ["projects"],
     Intent.ARCHITECTURE: ["architecture", "projects"],
     Intent.EXPERIENCE:   ["experience"],

@@ -8,6 +8,7 @@ from .resume import ResumeCapability
 from .achievements import AchievementsCapability
 from .experience import ExperienceCapability
 from .contact import ContactCapability
+from .hr import HRCapability
 
 # Instantiate all capabilities once
 _capabilities = {
@@ -17,6 +18,7 @@ _capabilities = {
     "achievements": AchievementsCapability(),
     "experience": ExperienceCapability(),
     "contact": ContactCapability(),
+    "hr": HRCapability(),
 }
 
 

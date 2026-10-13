@@ -3,23 +3,24 @@ import { useState, useRef, useEffect } from "react";
 const API_URL = import.meta.env.VITE_AI_API_URL || "http://localhost:8000";
 
 const PRESET_CHIPS = [
+  "Why should we hire Adarsh?",
+  "What are his strengths & weaknesses?",
+  "Where does he see himself in 5 years?",
   "Tell me about MindCare AI",
   "Explain the RAG architecture",
   "Which project is the strongest?",
   "What are his hackathon rankings?",
   "Why not LangChain?",
-  "What is his tech stack?",
-  "Tell me about NoiseSense",
   "How to contact Adarsh?",
 ];
 
 const WELCOME_MESSAGE = {
   role: "assistant",
-  content: `Hi! I'm **Adarsh AI** — your guide to Adarsh Patel's projects, AI systems, architecture, experience, and achievements.
+  content: `Hi! I'm **Adarsh AI** — your guide to Adarsh Patel's projects, AI systems, architecture, experience, achievements, and interview questions.
 
 Powered by a custom **Planner → Capability → Prompt → LLM** runtime — the same architecture as MindCare AI, built without LangChain.
 
-Feel free to ask me anything about his work, technical decisions, or career journey. 👇`,
+Ask me about his projects, technical decisions, why to hire him, or his strengths & weaknesses! 👇`,
 };
 
 function generateSessionId() {

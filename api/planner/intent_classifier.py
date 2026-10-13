@@ -8,6 +8,7 @@ import re
 
 
 class Intent(str, Enum):
+    HR = "HR_INTENT"
     PROJECT = "PROJECT_INTENT"
     ARCHITECTURE = "ARCHITECTURE_INTENT"
     EXPERIENCE = "EXPERIENCE_INTENT"
@@ -22,9 +23,21 @@ class Intent(str, Enum):
 
 # Keyword lists per intent — order matters (checked top to bottom)
 INTENT_PATTERNS: list[tuple[Intent, list[str]]] = [
+    (Intent.HR, [
+        "why should we hire", "why hire", "why choose you", "why should i hire",
+        "why are you the best", "what makes you unique", "why hire adarsh",
+        "strength", "strengths", "weakness", "weaknesses", "areas of improvement",
+        "greatest strength", "biggest weakness", "flaw",
+        "where do you see yourself", "5 years", "five years", "career goal", "future plan",
+        "aspirations", "work style", "work culture", "ideal environment",
+        "conflict", "disagreement", "handle pressure", "work under pressure", "teamwork", "team player", "handle stress",
+        "relocat", "willing to relocate", "open to relocate", "notice period", "when can you start",
+        "availability", "salary expectation", "compensation",
+    ]),
     (Intent.CONTACT, [
-        "email", "contact", "reach", "hire", "linkedin", "github", "phone",
+        "email", "contact", "reach", "linkedin", "github", "phone",
         "how to get in touch", "get in touch", "reach out", "connect with",
+        "how to hire", "contact to hire",
     ]),
     (Intent.COMPARE, [
         "compare", "best project", "strongest project", "which project", "better",

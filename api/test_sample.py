@@ -104,6 +104,20 @@ TEST_CASES = [
         "expected_intent": "PROJECT_INTENT",
         "description": "Typo test for VibeCoder ('vibecodeer')",
     },
+    {
+        "id": 13,
+        "question": "Why should we hire you?",
+        "expected_keywords": ["AI", "Adarsh"],
+        "expected_intent": "HR_INTENT",
+        "description": "HR query — Why hire Adarsh / value proposition",
+    },
+    {
+        "id": 14,
+        "question": "What are your strengths and weaknesses?",
+        "expected_keywords": ["strength", "weakness"],
+        "expected_intent": "HR_INTENT",
+        "description": "HR query — Strengths & weaknesses",
+    },
 ]
 
 

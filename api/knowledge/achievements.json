@@ -19,7 +19,7 @@
   ],
   "dsa": {
     "platform": "LeetCode",
-    "problems_solved": "400+",
+    "problems_solved": "100+",
     "topics": ["Arrays", "Strings", "Linked Lists", "Trees", "Graphs", "Dynamic Programming", "Sliding Window", "Two Pointers", "Binary Search", "Heaps"],
     "focus": "Strong DSA foundation with consistent daily practice"
   },
