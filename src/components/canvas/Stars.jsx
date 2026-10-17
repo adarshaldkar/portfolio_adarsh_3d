@@ -42,7 +42,11 @@ const StarsCanvas = () => {
         pointerEvents: "none",
       }}
     >
-      <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 1] }}>
+      <Canvas
+        dpr={[1, 1.25]}
+        camera={{ position: [0, 0, 1] }}
+        gl={{ powerPreference: "high-performance", antialias: false }}
+      >
         <Suspense fallback={null}>
           <Stars />
         </Suspense>

@@ -39,6 +39,19 @@ const SectionSkeleton = () => (
 
 const MainPortfolio = () => {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [loadStars, setLoadStars] = useState(false);
+
+  React.useEffect(() => {
+    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 900));
+    const handle = idleCallback(() => {
+      setLoadStars(true);
+    });
+    return () => {
+      if (window.cancelIdleCallback && typeof handle === "number") {
+        window.cancelIdleCallback(handle);
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -72,9 +85,11 @@ const MainPortfolio = () => {
       </div>
 
       {/* ── Layer 2: Stars Particle Canvas (fixed, z-1) ── */}
-      <Suspense fallback={null}>
-        <StarsCanvas />
-      </Suspense>
+      {loadStars && (
+        <Suspense fallback={null}>
+          <StarsCanvas />
+        </Suspense>
+      )}
 
       {/* ── Layer 3: Main Content (z-10, above stars & aurora) ── */}
       <div className="relative z-10 bg-transparent">

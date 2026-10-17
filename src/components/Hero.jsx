@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import confetti from "canvas-confetti";
@@ -9,6 +9,21 @@ const ComputersCanvas = lazy(() => import("./canvas/Computers"));
 
 
 const Hero = () => {
+  const [load3D, setLoad3D] = useState(false);
+
+  useEffect(() => {
+    // Progressive idle hydration: allow Hero text, badges, and background to paint first
+    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 600));
+    const handle = idleCallback(() => {
+      setLoad3D(true);
+    });
+
+    return () => {
+      if (window.cancelIdleCallback && typeof handle === "number") {
+        window.cancelIdleCallback(handle);
+      }
+    };
+  }, []);
   const fireConfetti = () => {
     const end = Date.now() + 1500;
     const colors = ["#915EFF", "#00cea8", "#bf61ff", "#06b6d4", "#ffffff"];
@@ -129,9 +144,13 @@ const Hero = () => {
         </div>
       </div>
 
-      <Suspense fallback={null}>
-        <ComputersCanvas />
-      </Suspense>
+      {load3D ? (
+        <Suspense fallback={<div className="w-full h-full min-h-[420px]" />}>
+          <ComputersCanvas />
+        </Suspense>
+      ) : (
+        <div className="w-full h-full min-h-[420px] pointer-events-none" />
+      )}
 
       <div className='absolute bottom-4 sm:bottom-10 w-full flex justify-center items-center z-20 pointer-events-auto'>
         <a href='#about' aria-label="Scroll down to About section">

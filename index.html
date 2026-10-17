@@ -9,10 +9,14 @@
     <meta name="keywords" content="Adarsh Patel, AI Engineer, Full Stack Developer, MERN Stack, React, FastAPI, Python, 3D Web Portfolio" />
     <meta name="author" content="B. Adarsh Patel" />
 
-    <!-- Preconnect & Asynchronous Google Fonts to prevent render-blocking -->
+    <!-- Preconnect & Non-render-blocking Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>
