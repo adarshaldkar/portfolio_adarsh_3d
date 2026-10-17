@@ -1,9 +1,11 @@
+import React, { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import confetti from "canvas-confetti";
 
 import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
+
+const ComputersCanvas = lazy(() => import("./canvas/Computers"));
 
 
 const Hero = () => {
@@ -127,10 +129,12 @@ const Hero = () => {
         </div>
       </div>
 
-      <ComputersCanvas />
+      <Suspense fallback={null}>
+        <ComputersCanvas />
+      </Suspense>
 
       <div className='absolute bottom-4 sm:bottom-10 w-full flex justify-center items-center z-20 pointer-events-auto'>
-        <a href='#about'>
+        <a href='#about' aria-label="Scroll down to About section">
           <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
             <motion.div
               animate={{

@@ -37,6 +37,8 @@ const ProjectCard = ({
           <img
             src={image}
             alt={name}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
 
@@ -45,16 +47,18 @@ const ProjectCard = ({
 
           {/* GitHub icon */}
           <div className="absolute top-4 right-4 z-10">
-            <div
+            <button
+              type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 window.open(source_code_link, "_blank");
               }}
-              className="black-gradient w-11 h-11 rounded-full flex justify-center items-center cursor-pointer hover:scale-110 transition-transform duration-200 shadow-lg"
-              title="View Source Code on GitHub"
+              className="black-gradient w-11 h-11 rounded-full flex justify-center items-center cursor-pointer hover:scale-110 transition-transform duration-200 shadow-lg border-none"
+              title={`View ${name} Source Code on GitHub`}
+              aria-label={`View ${name} Source Code on GitHub`}
             >
               <img src={github} alt="github" className="w-5 h-5 object-contain mix-blend-color-dodge" />
-            </div>
+            </button>
           </div>
 
           {/* Category tag in top-left */}

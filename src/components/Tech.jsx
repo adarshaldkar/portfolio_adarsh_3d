@@ -56,6 +56,10 @@ const TechOrb = ({ technology, index, total }) => {
         <img
           src={technology.icon}
           alt={technology.name}
+          loading="lazy"
+          decoding="async"
+          width="44"
+          height="44"
           className="w-11 h-11 object-contain relative z-10"
           style={{ filter: hovered ? "drop-shadow(0 0 6px #915EFF88)" : "none", transition: "filter 0.3s" }}
         />

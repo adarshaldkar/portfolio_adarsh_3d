@@ -40,6 +40,10 @@ const FeedbackCard = ({
       <img
         src={image || `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`}
         alt={`feedback_by-${name}`}
+        loading="lazy"
+        decoding="async"
+        width="40"
+        height="40"
         className="w-10 h-10 rounded-full object-cover border border-[#915EFF66] flex-shrink-0"
       />
     </div>

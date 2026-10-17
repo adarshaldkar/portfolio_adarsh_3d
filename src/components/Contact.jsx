@@ -177,14 +177,9 @@ const Contact = () => {
 
       <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px] flex flex-col'
+        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
       >
-        {/* 3D Interactive Globe — pin on Puducherry */}
-        <InteractiveGlobe />
-        {/* Fallback EarthCanvas below globe for visual depth */}
-        <div className="flex-1 min-h-[200px]">
-          <EarthCanvas />
-        </div>
+        <EarthCanvas />
       </motion.div>
     </div>
   );
