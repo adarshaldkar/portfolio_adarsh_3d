@@ -12,17 +12,10 @@ const Hero = () => {
   const [load3D, setLoad3D] = useState(false);
 
   useEffect(() => {
-    // Progressive idle hydration: allow Hero text, badges, and background to paint first
-    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 600));
-    const handle = idleCallback(() => {
+    const timer = setTimeout(() => {
       setLoad3D(true);
-    });
-
-    return () => {
-      if (window.cancelIdleCallback && typeof handle === "number") {
-        window.cancelIdleCallback(handle);
-      }
-    };
+    }, 350);
+    return () => clearTimeout(timer);
   }, []);
   const fireConfetti = () => {
     const end = Date.now() + 1500;

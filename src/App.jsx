@@ -42,15 +42,10 @@ const MainPortfolio = () => {
   const [loadStars, setLoadStars] = useState(false);
 
   React.useEffect(() => {
-    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 900));
-    const handle = idleCallback(() => {
+    const timer = setTimeout(() => {
       setLoadStars(true);
-    });
-    return () => {
-      if (window.cancelIdleCallback && typeof handle === "number") {
-        window.cancelIdleCallback(handle);
-      }
-    };
+    }, 500);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
